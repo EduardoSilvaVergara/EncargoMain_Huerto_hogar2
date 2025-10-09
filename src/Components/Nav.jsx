@@ -150,6 +150,37 @@ function Nav() {
                     </div>
                 </div>
             </div>
+
+            <div className="modal fade" id="signinModal" tabIndex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content p-4">
+                    <div className="modal-header border-0">
+                        <h5 className="modal-title fw-bold" id="signinModalLabel">Sign In</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                        <form>
+                        <div className="mb-3">
+                            <label className="form-label">Email</label>
+                            <input type="email" className="form-control" placeholder="Ingresa Tu Email:" required />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Contraseña</label>
+                            <input type="password" className="form-control" placeholder="Ingresa Tu Contraseña:" required />
+                        </div>
+                        <p className="text-muted"><input type="checkbox" className='m-1'/>
+                            Al iniciar sesión, aceptas nuestros <a href="#" className="text-success text-decoration-none">Términos</a>
+                            y <a href="#" className="text-success text-decoration-none">Política de Privacidad</a>
+                        </p>
+                        <button type="button" className="btn btn-dark w-100">Sign In</button>
+                        </form>
+                        <div className="text-center mt-3">
+                        <p>¿No tienes una cuenta? <a href="#" className="text-success fw-bold" data-bs-toggle="modal" data-bs-target="#signupModal">Registrarse</a></p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
     </>
   )
 }
