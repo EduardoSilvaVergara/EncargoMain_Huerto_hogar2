@@ -9,6 +9,15 @@ function App() {
   return (
     <>
       <Nav />
+      <div>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-9">
+              <h1>Hola mundo</h1>
+            </div>
+          </div>
+        </div>
+      </div>
       <Footer />
     </>
   )

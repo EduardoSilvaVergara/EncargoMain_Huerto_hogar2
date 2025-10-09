@@ -1,9 +1,61 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 function Nav() {
-  return (
-    <>
-      {/* Navbar */}
+
+    const [cartCount, setCartCount] = useState(0);
+    const [wishlistCount, setWishlistCount] = useState(0);
+
+    const [showSearch, setShowSearch] = useState(false);
+    const [searchInput, setSearchInput] = useState('');
+    const navigate = useNavigate();
+
+
+    const updateCounts = () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        const totalCartItems = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
+        setCartCount(totalCartItems);
+        setWishlistCount(wishlist.length);
+    }
+
+    useEffect(() => {
+        updateCounts();
+
+        const handleCartUpdate = () => updateCounts();
+        const handleWishlistUpdate = () => updateCounts();
+
+        window.addEventListener('cartUpdated', handleCartUpdate);
+        window.addEventListener('wishlistUpdated', handleWishlistUpdate);
+
+        const onStorageChange = (e) => {
+            if (e.key === 'cart' || e.key === 'wishlist') {
+                updateCounts();
+            }
+        };
+        window.addEventListener('storage', onStorageChange);
+
+        return () => {
+            window.removeEventListener('cartUpdated', handleCartUpdate);
+            window.removeEventListener('wishlistUpdated', handleWishlistUpdate);
+            window.removeEventListener('storage', onStorageChange);
+        };
+    }, []);
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchInput.trim()) {
+            navigate(`/${searchInput.trim().toLowerCase()}`);
+            setSearchInput('');
+            setShowSearch(false);
+        }
+    };
+
+    return (
+        <>
+            {/* Navbar */}
             <div className="nav w-100 fixed-top bg-white shadow-sm">
                 <nav className="navbar navbar-expand-lg py-3 justify-content-between align-items-center w-100 nav-wrapper">
                     {/*  Toggle Button */}
@@ -26,9 +78,20 @@ function Nav() {
                     {/* Icon */}
                     <ul className="d-lg-none d-flex align-items-center mt-2 ">
                         <li className="nav-item p-2 mt-3">
-                            <Link to='/'>
+                            <button className="btn p-0 border-0 bg-transparent" onClick={() => setShowSearch(!showSearch)}>
                                 <i className="bi bi-search fs-5 text-dark"></i>
-                            </Link>
+                            </button>
+                            {showSearch && (
+                                <form onSubmit={handleSearchSubmit} className="position-absolute top-100 start-0 w-100 bg-white p-2 shadow-sm z-3">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Escribe una ruta (ej. about)"
+                                        value={searchInput}
+                                        onChange={(e) => setSearchInput(e.target.value)}
+                                    />
+                                </form>
+                            )}
                         </li>
                         <li className="nav-item p-2 mt-3">
                             <a href="#" data-bs-toggle='modal' data-bs-target='#signupModal'>
@@ -65,7 +128,7 @@ function Nav() {
                                     Catalogo
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="shopDropdown">
-                                    <li><Link className="dropdown-item" to="/shopFrutas">Frutas</Link></li>
+                                    <li><Link className="dropdown-item" to="/">Frutas</Link></li>
                                     <li><Link className="dropdown-item" to="/shopVerduras">Verduras</Link></li>
                                     <li><Link className="dropdown-item" to="/shopLacteos">Productos Lacteos</Link></li>
                                     <li><Link className="dropdown-item" to="/shopOrg">Productos organicos</Link></li>
@@ -90,9 +153,20 @@ function Nav() {
                         {/* Right Icon*/}
                         <ul className="navbar-nav d-none d-lg-flex align-items-center gap-4">
                             <li className="nav-item">
-                                <a href="#">
-                                    <i className="bi bi-search fs-5 text-dark"></i>
-                                </a>
+                            <button className="btn p-0 border-0 bg-transparent" onClick={() => setShowSearch(!showSearch)}>
+                                <i className="bi bi-search fs-5 text-dark"></i>
+                            </button>
+                                {showSearch && (
+                                    <form onSubmit={handleSearchSubmit} className="position-absolute top-100 start-0 w-100 bg-white p-2 shadow-sm z-3">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Escribe una ruta (ej. about)"
+                                            value={searchInput}
+                                            onChange={(e) => setSearchInput(e.target.value)}
+                                        />
+                                    </form>
+                                )}
                             </li>
                             <li className="nav-item">
                                 <a to='/' data-bs-toggle='modal' data-bs-target='#signupModal'>
@@ -137,8 +211,8 @@ function Nav() {
                                     <label className="form-label">Contraseña</label>
                                     <input type="password" className="form-control" placeholder='Ingresa Tu Contrasenia:' required />
                                 </div>
-                                <p className="text-muted"><input type="checkbox" className='m-1'/> 
-                                     Al registrarte, aceptas nuestros <a href="#" className='text-success text-decoration-none'>Términos</a>
+                                <p className="text-muted"><input type="checkbox" className='m-1' />
+                                    Al registrarte, aceptas nuestros <a href="#" className='text-success text-decoration-none'>Términos</a>
                                     y <a href="#" className='text-success text-decoration-none'>Política de Privacidad.</a>
                                 </p>
                                 <button type='button' className='btn btn-dark w-100'>Registrarse</button>
@@ -154,35 +228,37 @@ function Nav() {
             <div className="modal fade" id="signinModal" tabIndex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content p-4">
-                    <div className="modal-header border-0">
-                        <h5 className="modal-title fw-bold" id="signinModalLabel">Sign In</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body">
-                        <form>
-                        <div className="mb-3">
-                            <label className="form-label">Email</label>
-                            <input type="email" className="form-control" placeholder="Ingresa Tu Email:" required />
+                        <div className="modal-header border-0">
+                            <h5 className="modal-title fw-bold" id="signinModalLabel">Sign In</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="mb-3">
-                            <label className="form-label">Contraseña</label>
-                            <input type="password" className="form-control" placeholder="Ingresa Tu Contraseña:" required />
+                        <div className="modal-body">
+                            <form>
+                                <div className="mb-3">
+                                    <label className="form-label">Email</label>
+                                    <input type="email" className="form-control" placeholder="Ingresa Tu Email:" required />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Contraseña</label>
+                                    <input type="password" className="form-control" placeholder="Ingresa Tu Contraseña:" required />
+                                </div>
+                                <p className="text-muted"><input type="checkbox" className='m-1' />
+                                    Al iniciar sesión, aceptas nuestros <a href="#" className="text-success text-decoration-none">Términos</a>
+                                    y <a href="#" className="text-success text-decoration-none">Política de Privacidad</a>
+                                </p>
+                                <button type="button" className="btn btn-dark w-100">Sign In</button>
+                            </form>
+                            <div className="text-center mt-3">
+                                <p>¿No tienes una cuenta? <a href="#" className="text-success fw-bold" data-bs-toggle="modal" data-bs-target="#signupModal">Registrarse</a></p>
+                            </div>
                         </div>
-                        <p className="text-muted"><input type="checkbox" className='m-1'/>
-                            Al iniciar sesión, aceptas nuestros <a href="#" className="text-success text-decoration-none">Términos</a>
-                            y <a href="#" className="text-success text-decoration-none">Política de Privacidad</a>
-                        </p>
-                        <button type="button" className="btn btn-dark w-100">Sign In</button>
-                        </form>
-                        <div className="text-center mt-3">
-                        <p>¿No tienes una cuenta? <a href="#" className="text-success fw-bold" data-bs-toggle="modal" data-bs-target="#signupModal">Registrarse</a></p>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
-    </>
-  )
+
+
+        </>
+    )
 }
 
 export default Nav
