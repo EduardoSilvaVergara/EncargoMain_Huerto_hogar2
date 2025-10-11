@@ -1,15 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
 
 function Nav() {
 
     const [cartCount, setCartCount] = useState(0);
     const [wishlistCount, setWishlistCount] = useState(0);
-
-    const [showSearch, setShowSearch] = useState(false);
-    const [searchInput, setSearchInput] = useState('');
-    const navigate = useNavigate();
 
 
     const updateCounts = () => {
@@ -44,14 +39,6 @@ function Nav() {
         };
     }, []);
 
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        if (searchInput.trim()) {
-            navigate(`/${searchInput.trim().toLowerCase()}`);
-            setSearchInput('');
-            setShowSearch(false);
-        }
-    };
 
     return (
         <>
@@ -78,20 +65,9 @@ function Nav() {
                     {/* Icon */}
                     <ul className="d-lg-none d-flex align-items-center mt-2 ">
                         <li className="nav-item p-2 mt-3">
-                            <button className="btn p-0 border-0 bg-transparent" onClick={() => setShowSearch(!showSearch)}>
+                            <button className="btn p-0 border-0 bg-transparent">
                                 <i className="bi bi-search fs-5 text-dark"></i>
                             </button>
-                            {showSearch && (
-                                <form onSubmit={handleSearchSubmit} className="position-absolute top-100 start-0 w-100 bg-white p-2 shadow-sm z-3">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Escribe una ruta (ej. about)"
-                                        value={searchInput}
-                                        onChange={(e) => setSearchInput(e.target.value)}
-                                    />
-                                </form>
-                            )}
                         </li>
                         <li className="nav-item p-2 mt-3">
                             <a href="#" data-bs-toggle='modal' data-bs-target='#signupModal'>
@@ -128,7 +104,7 @@ function Nav() {
                                     Catalogo
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="shopDropdown">
-                                    <li><Link className="dropdown-item" to="/">Frutas</Link></li>
+                                    <li><Link className="dropdown-item" to="/shopFrutas">Frutas</Link></li>
                                     <li><Link className="dropdown-item" to="/shopVerduras">Verduras</Link></li>
                                     <li><Link className="dropdown-item" to="/shopLacteos">Productos Lacteos</Link></li>
                                     <li><Link className="dropdown-item" to="/shopOrg">Productos organicos</Link></li>
@@ -152,21 +128,10 @@ function Nav() {
 
                         {/* Right Icon*/}
                         <ul className="navbar-nav d-none d-lg-flex align-items-center gap-4">
-                            <li className="nav-item">
-                            <button className="btn p-0 border-0 bg-transparent" onClick={() => setShowSearch(!showSearch)}>
-                                <i className="bi bi-search fs-5 text-dark"></i>
-                            </button>
-                                {showSearch && (
-                                    <form onSubmit={handleSearchSubmit} className="position-absolute top-100 start-0 w-100 bg-white p-2 shadow-sm z-3">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Escribe una ruta (ej. about)"
-                                            value={searchInput}
-                                            onChange={(e) => setSearchInput(e.target.value)}
-                                        />
-                                    </form>
-                                )}
+                            <li className="nav-item p-0 mt-0 d-flex align-items-center justify-content-center">
+                                <button className="btn p-0 border-0 bg-transparent">
+                                    <i className="bi bi-search fs-5 text-dark"></i>
+                                </button>
                             </li>
                             <li className="nav-item">
                                 <a to='/' data-bs-toggle='modal' data-bs-target='#signupModal'>
@@ -190,6 +155,7 @@ function Nav() {
                 </nav>
             </div>
 
+            {/* Sign-up Modal */}
             <div className="modal fade" id='signupModal' tabIndex='-1' aria-labelledby='signupModalLabel' aria-hidden='true'>
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content p-4">
@@ -229,7 +195,7 @@ function Nav() {
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content p-4">
                         <div className="modal-header border-0">
-                            <h5 className="modal-title fw-bold" id="signinModalLabel">Sign In</h5>
+                            <h5 className="modal-title fw-bold" id="signinModalLabel">Iniciar Sesion</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -246,7 +212,7 @@ function Nav() {
                                     Al iniciar sesión, aceptas nuestros <a href="#" className="text-success text-decoration-none">Términos</a>
                                     y <a href="#" className="text-success text-decoration-none">Política de Privacidad</a>
                                 </p>
-                                <button type="button" className="btn btn-dark w-100">Sign In</button>
+                                <button type="button" className="btn btn-dark w-100">Iniciar Sesion</button>
                             </form>
                             <div className="text-center mt-3">
                                 <p>¿No tienes una cuenta? <a href="#" className="text-success fw-bold" data-bs-toggle="modal" data-bs-target="#signupModal">Registrarse</a></p>
@@ -255,7 +221,6 @@ function Nav() {
                     </div>
                 </div>
             </div>
-
 
         </>
     )

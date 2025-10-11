@@ -7,7 +7,6 @@ import paryment4 from './../assets/payment-4.svg'
 import paryment5 from './../assets/payment-5.svg'
 import paryment6 from './../assets/payment-6.svg'
 
-
 function Footer() {
   return (
     <>
