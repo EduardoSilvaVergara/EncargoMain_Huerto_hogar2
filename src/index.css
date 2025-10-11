@@ -66,3 +66,62 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.about-glowing-section {
+    margin-top: 1px;
+    min-height: 80vh;
+    background-image: url('assets2/fruta-1.jpg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+}
+
+.about-glowing-section h1{
+    color: #ffffff;
+    font-size: 50px;
+}
+.about-glowing-section p{
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.about-section {
+    padding: 4rem 0;
+    background-color: var(--white-color);
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.about-img1 {
+    height: 500px;
+}
+
+.about-img1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-section h2,
+.about-section h4 {
+    color: #111;
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.about-section h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.about-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+.about-section .text-block {
+    padding: 0 1rem;
+}
