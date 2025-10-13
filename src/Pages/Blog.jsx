@@ -40,12 +40,6 @@ function Blog() {
                 ))}
             </div>
         </div>
-    
-
-
-
-
-
     </>
   )
 }
