@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "image": "/Images2/manzana-1.jpg",
+    "secondImage": "/Images2/manzana-2.jpg",
+    "Productname": "Manzana Roja (por kilo)",
+    "price": "1200",
+    "tag": "New",
+    "description": "Fruta crujiente y dulce, ideal para colaciones o postres.",
+    "seller": "Frutas del Valle",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 2,
+    "image": "/Images2/platano-1.jpg",
+    "secondImage": "/Images2/platano-2.jpg",
+    "Productname": "Platano (por kilo)",
+    "price": "950",
+    "oldprice": "1200",
+    "tag": "Sale",
+    "description": "Fuente natural de energía y potasio, perfecta para desayunos.",
+    "seller": "Tropical Market",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 3,
+    "image": "/Images2/pera-1.jpg",
+    "secondImage": "/Images2/pera-2.jpg",
+    "Productname": "Pera Verde (por kilo)",
+    "price": "1100",
+    "tag": "New",
+    "description": "Jugosa y refrescante, excelente para ensaladas o jugos.",
+    "seller": "Huerto Natural",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 4,
+    "image": "/Images2/uva-1.jpg",
+    "secondImage": "/Images2/uva-2.jpg",
+    "Productname": "Uva Negra (por kilo)",
+    "price": "2300",
+    "oldprice": "2800",
+    "tag": "Sale",
+    "description": "Pequeñas y dulces, ideales para picoteos o postres.",
+    "seller": "Viña Orgánica",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 5,
+    "image": "/Images2/frutilla-1.jpg",
+    "secondImage": "/Images2/frutilla-2.jpg",
+    "Productname": "Frutilla (por kilo)",
+    "price": "2500",
+    "oldprice": "3200",
+    "tag": "Sale",
+    "description": "Fruta aromática y vibrante, perfecta para batidos y repostería.",
+    "seller": "Campo Dulce",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 6,
+    "image": "/Images2/kiwi-1.jpg",
+    "secondImage": "/Images2/kiwi-2.jpg",
+    "Productname": "Kiwi (por kilo)",
+    "price": "1800",
+    "description": "Ácido y refrescante, rico en vitamina C y fibra.",
+    "seller": "Verde Vivo",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 7,
+    "image": "/Images2/mango-1.jpg",
+    "secondImage": "/Images2/mango-3.jpg",
+    "Productname": "Mango (por unidad)",
+    "price": "2700",
+    "description": "Exótico y jugoso, ideal para smoothies y platos tropicales.",
+    "seller": "Sabores del Trópico",
+    "collection": "Frutas Exóticas"
+  },
+  {
+    "id": 8,
+    "image": "/Images2/papaya-1.jpg",
+    "secondImage": "/Images2/papaya-2.jpg",
+    "Productname": "Papaya (por unidad)",
+    "price": "2900",
+    "description": "Suave y digestiva, excelente para el desayuno o postres.",
+    "seller": "Sabores del Trópico",
+    "collection": "Frutas Exóticas"
+  },
+  {
+    "id": 9,
+    "image": "/Images2/pinia-1.jpg",
+    "secondImage": "/Images2/pinia-2.jpg",
+    "Productname": "Piña (por unidad)",
+    "price": "2600",
+    "description": "Tropical y refrescante, perfecta para jugos y ensaladas.",
+    "seller": "Sabores del Trópico",
+    "collection": "Frutas Exóticas"
+  },
+  {
+    "id": 10,
+    "image": "/Images2/melon-1.jpg",
+    "secondImage": "/Images2/melon-2.jpg",
+    "Productname": "Melón (por unidad)",
+    "price": "3000",
+    "oldprice": "3800",
+    "tag": "Sale",
+    "description": "Dulce y jugoso, ideal para días calurosos.",
+    "seller": "Campo Dulce",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 11,
+    "image": "/Images2/sandia-1.jpg",
+    "secondImage": "/Images2/sandia-2.jpg",
+    "Productname": "Sandía (por unidad)",
+    "price": "2400",
+    "description": "Refrescante y rica en agua, perfecta para compartir.",
+    "seller": "Campo Dulce",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 12,
+    "image": "/Images2/mandarina-1.jpg",
+    "secondImage": "/Images2/mandarina-2.jpg",
+    "Productname": "Mandarina (por kilo)",
+    "price": "1000",
+    "description": "Pequeña y fácil de pelar, ideal para colaciones escolares.",
+    "seller": "Huerto Natural",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 13,
+    "image": "/Images2/durazno-1.jpg",
+    "secondImage": "/Images2/durazno-2.jpg",
+    "Productname": "Durazno (por kilo)",
+    "price": "1900",
+    "description": "Carnoso y dulce, excelente para mermeladas y postres.",
+    "seller": "Frutas del Valle",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 14,
+    "image": "/Images2/ciruela-1.jpg",
+    "secondImage": "/Images2/ciruela-2.jpg",
+    "Productname": "Ciruela (por kilo)",
+    "price": "2100",
+    "oldprice": "2600",
+    "tag": "Sale",
+    "description": "Fruta suave y ligeramente ácida, buena para la digestión.",
+    "seller": "Frutas del Valle",
+    "collection": "Frutas Frescas"
+  },
+  {
+    "id": 15,
+    "image": "/Images2/granada-1.jpg",
+    "secondImage": "/Images2/granada-2.jpg",
+    "Productname": "Granada (por unidad)",
+    "price": "3200",
+    "oldprice": "3800",
+    "tag": "Sale",
+    "description": "Exótica y antioxidante, ideal para ensaladas y jugos.",
+    "seller": "Verde Vivo",
+    "collection": "Frutas Exóticas"
+  },
+  {
+    "id": 16,
+    "image": "/Images2/arandanos-1.jpg",
+    "secondImage": "/Images2/arandanos-2.jpg",
+    "Productname": "Arándanos (por kilo)",
+    "price": "2800",
+    "oldprice": "3400",
+    "tag": "Sale",
+    "description": "Pequeños y nutritivos, perfectos para cereales y repostería.",
+    "seller": "Verde Vivo",
+    "collection": "Frutas Frescas"
+  }
+]
