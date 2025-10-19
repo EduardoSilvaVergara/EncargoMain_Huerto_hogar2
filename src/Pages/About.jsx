@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-import head from './../assets2/naranja-1.png';
-import about1 from './../assets2/frutas-2.jpg';
-import about2 from './../assets2/frutas-3.jpg';
+import head from './../assets/naranja-1.png';
+import about1 from './../assets/frutas-2.jpg';
+import about2 from './../assets/frutas-3.jpg';
 
 import client1 from './../assets/brand-logo-1.png';
 import client2 from './../assets/brand-logo-2.png';
@@ -11,9 +11,9 @@ import client4 from './../assets/brand-logo-4.png';
 import client5 from './../assets/brand-logo-5.png';
 import client6 from './../assets/brand-logo-6.png';
 
-import team1 from './../assets2/panda-ed.jpg';
-import team2 from './../assets2/gato-cr.jpg';
-import team3 from './../assets2/perro-fa.jpg';
+import team1 from './../assets/panda-ed.jpg';
+import team2 from './../assets/gato-cr.jpg';
+import team3 from './../assets/perro-fa.jpg';
 
 const About = () => {
     const [quote, setQuote] = useState(

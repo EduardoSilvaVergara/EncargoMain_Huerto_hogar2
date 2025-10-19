@@ -65,7 +65,7 @@ function Wishlist() {
         {wishlist.length === 0 ? (
           <div className="text-center">
             <p className="lead text-muted">Tu lista de deseos está vacía.</p>
-            <Link to='/shop' className='btn'>
+            <Link to='/' className='btn'>
             <i className="ri-shopping-bag-line me-2"></i>Explorar Productos</Link>
           </div>
         ): (
@@ -75,6 +75,7 @@ function Wishlist() {
                 <div className="card h-100 shadow-sm border-0">
                   <div className="position-relative overflow-hidden" style={{height:'250px', backgroundColor:'#f8f9fa'}}>
                     <img src={product.image} className='card-img-top h-100 object-fit-cover' alt="" />
+                    
                     {product.tag && (
                       <span className={`badge position-absolute top-0 end-0 m-2 ${product.tag === 'New' ? 'bg-danger' : 'bg-success'}`}>
                         {product.tag}
@@ -82,7 +83,7 @@ function Wishlist() {
                     )}
                   </div>
                   <div className="card-body d-flex flex-column text-center">
-                    <p className="card-text fs-5 fw-semibold text-dark">{product.price}</p>
+                    <p className="card-text fs-5 fw-semibold text-dark">${product.price}</p>
                     <h5 className="card-title">{product.Productname}</h5>
                     <div className="mt-auto d-flex justify-content-between gap-2">
                       <button className="btn w-100" onClick={() => addToCart(product)}>

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import store1 from './../assets2/tienda-1.jpg';
-import store2 from './../assets2/tienda-2.jpg';
+import store1 from './../assets/tienda-1.jpg';
+import store2 from './../assets/tienda-2.jpg';
 
 import { Link } from 'react-router-dom';
 

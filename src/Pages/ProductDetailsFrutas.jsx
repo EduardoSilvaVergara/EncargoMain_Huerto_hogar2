@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 
 //Data
-import products from './../ProductFrutas.json'
+import products from './../json/ProductFrutas.json'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade, Navigation } from 'swiper/modules'
@@ -11,7 +11,7 @@ import 'swiper/css/effect-fade'
 import { Link, useParams } from 'react-router-dom'
 
 function ProductDetailsFrutas() {
-  const { id } = useParams();
+    const { id } = useParams();
     const product = products.find((p) => p.id == id)
 
     const [mainImage, setMainImage] = useState('');
@@ -29,21 +29,21 @@ function ProductDetailsFrutas() {
     const colors = ['#000000', '#7B3F00', '#9BBEC8']
 
     const addToCart = (product) => {
-            const existing = JSON.parse(localStorage.getItem('cart')) || [];
-            const alreadyInCart = existing.find(p => p.id === product.id);
-    
-            if (product) {
-                const updatedProduct = { ...product, quantity: quantity };
-                const updatedCart = [...existing, updatedProduct];
-                localStorage.setItem('cart', JSON.stringify(updatedCart));
-                window.dispatchEvent(new Event('cartUpdated'));
-                toast.success(`${product.Productname} added to your cart!`);
-            }
-            else {
-                toast.info(`${product.Productname} is already in your cart!`);
-            }
-    
+        const existing = JSON.parse(localStorage.getItem('cart')) || [];
+        const alreadyInCart = existing.find(p => p.id === product.id);
+
+        if (product) {
+            const updatedProduct = { ...product, quantity: quantity };
+            const updatedCart = [...existing, updatedProduct];
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            window.dispatchEvent(new Event('cartUpdated'));
+            toast.success(`${product.Productname} added to your cart!`);
         }
+        else {
+            toast.info(`${product.Productname} is already in your cart!`);
+        }
+
+    }
 
     return (
         <>
@@ -78,7 +78,7 @@ function ProductDetailsFrutas() {
                         <h5 className="fw-bold">${product.price}</h5>
                         <h2 className="mb-4 fw-semibold">{product.Productname}</h2>
 
-                        
+
                         <p className="fw-semibold mb-1"> Cantidad</p>
                         <div className="d-flex align-items-center gap-3 mb-4 quantity">
                             <div className="d-flex align-items-center Quantity-box" style={{ maxWidth: '200px' }}>
@@ -153,10 +153,19 @@ function ProductDetailsFrutas() {
                         </ul>
                     </div>
 
-                    <div className="tab-pane fade text-center" id="shipping" role="tabpanel">
+                    <div className="tab-pane fade" id="shipping" role="tabpanel">
                         <hr />
                         <p>
-                        <strong>agregar algo</strong>
+                            <strong>Envíos:</strong> Realizamos envíos a todo Chile.
+                            <br /><strong>Tiempo estimado de entrega:</strong> 1 a 3 días hábiles.
+                            <br />Todos nuestros productos se entregan en empaques que garantizan frescura y protección durante el transporte.
+                        </p>
+                        <p>
+                            <strong>Devoluciones:</strong> Aceptamos devoluciones por productos dañados o en mal estado dentro de las 24 horas siguientes a la entrega.
+                            <br />Para iniciar un proceso de devolución, contáctanos a nuestro correo de soporte o vía WhatsApp.
+                        </p>
+                        <p>
+                            <strong>Nota:</strong> Al tratarse de productos frescos, no aceptamos devoluciones por cambio de opinión, pero siempre buscamos soluciones para asegurar tu satisfacción.
                         </p>
                         <hr />
                     </div>

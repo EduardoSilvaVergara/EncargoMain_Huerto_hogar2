@@ -1,6 +1,6 @@
 import React from 'react'
 
-import blogs from './../Blogs.json'
+import blogs from './../json/Blogs.json'
 
 import { Link } from 'react-router-dom'
 

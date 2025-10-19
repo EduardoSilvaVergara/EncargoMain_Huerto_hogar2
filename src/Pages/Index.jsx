@@ -6,14 +6,15 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 
 //Data
-import Products from './../ProductFrutas.json';
+import Products from './../json/ProductFrutas.json';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import subBanner1 from './../assets/Banner-1.webp';
-import subBanner2 from './../assets/Banner-2.webp';
+// imagenes
+import subBanner1 from './../assets/Banner-1.jpg';
+import subBanner2 from './../assets/Banner-2.jpg';
 
 import sericeImg1 from './../assets/service-icon-1.svg';
 import sericeImg2 from './../assets/service-icon-2.svg';
@@ -24,16 +25,17 @@ import brand1 from './../assets/brand-1.png';
 import brand2 from './../assets/brand-2.png';
 import brand3 from './../assets/brand-3.png';
 
-import femalebanner from './../assets/banner-female.webp';
+import femalebanner from './../assets/banner-frutas.jpg';
 
-import discover1 from './../assets/discover-1.webp'
-import discover2 from './../assets/discover-2.webp'
+import discover1 from './../assets/discover-1.jpg'
+import discover2 from './../assets/discover-2.jpg'
 
 import socialImage1 from './../assets/social-image-1.jpg'
 import socialImage2 from './../assets/social-image-2.jpg'
 import socialImage3 from './../assets/social-image-3.jpg'
 import socialImage4 from './../assets/social-image-4.jpg'
 import socialImage5 from './../assets/social-image-5.jpg'
+import socialImage6 from './../assets/social-image-6.jpg'
 
 
 function Index() {
@@ -87,30 +89,31 @@ function Index() {
                     <SwiperSlide>
                         <div className="hero-wrap hero-wrap1">
                             <div className="hero-content">
-                                <h5>- Essenstial Items</h5>
-                                <h1>Beauty  Inspired <br /> by real life</h1>
-                                <p className="my-3">Made using clean, non-toxic ingredients, our products are designed for everyone</p>
-                                <a href="#" className='btn hero-btn mt-3'>Shop now</a>
+                                <h5>- Nueva Colección</h5>
+                                <h1>Verduras frescas para tu mesa</h1>
+                                <p className="my-3">Cultivadas de manera natural y saludable, nuestras verduras están llenas de sabor y nutrientes</p>
+                                <Link to='shopVerduras' className='btn hero-btn mt-3'>Comprar Ahora</Link>
                             </div>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="hero-wrap hero-wrap2">
                             <div className="hero-content">
-                                <h5>- New Collection</h5>
-                                <h1>Get the perfectly hydrated skin</h1>
-                                <p className="my-3">Made using clean, non-toxic ingredients, our products are designed for everyone</p>
-                                <a href="#" className='btn hero-btn mt-3'>Shop now</a>
+                                <h5>- Fresco y Saludable</h5>
+                                <h1>Frutas <br /> Directo de la Naturaleza</h1>
+                                <p className="my-3">Seleccionadas en su punto óptimo de madurez, nuestras frutas son frescas, jugosas y llenas de sabor natural</p>
+                                <Link to='/shopFrutas' className='btn hero-btn mt-3'>Comprar Ahora</Link>
                             </div>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="hero-wrap hero-wrap3">
                             <div className="hero-content">
-                                <h5>- Get the glow</h5>
-                                <h1>Be your kind <br /> of beauty</h1>
-                                <p className="my-3">Made using clean, non-toxic ingredients, our products are designed for everyone</p>
-                                <a href="#" className='btn hero-btn mt-3'>Shop now</a>
+                                <h5>- Desde Nuestro Huerto</h5>
+                                <h1>Lo mejor <br /> de la granja a tu hogar</h1>
+                                <p className="my-3">Cultivamos frutas y verduras frescas en nuestro huerto, con amor y cuidado para tu familia</p>
+                                <p className="my-3">Descubre noticias, consejos de cultivo y más en nuestro blog.</p>
+                                <a href="#seccion-bajar" className='btn hero-btn mt-3'>Ir al Boletin</a>
                             </div>
                         </div>
                     </SwiperSlide>
@@ -122,8 +125,8 @@ function Index() {
                 <div className="container position-relative">
                     <div className="row">
                         <div className="section-title mb-5 product-title text-center">
-                            <h2 className="fw-semibold fs-1"> Our featurd Products</h2>
-                            <p className="text-muted">Get the skin you want to feel</p>
+                            <h2 className="fw-semibold fs-1"> Nuestros productos destacados </h2>
+                            <p className="text-muted">Disfruta la dulzura y frescura de nuestras frutas</p>
                         </div>
                     </div>
                     <Swiper
@@ -159,7 +162,7 @@ function Index() {
                                             {product.tag}
                                         </span>
                                     </div>
-                                    <Link to={`/product/${product.id}`} className='text-decoration-none text-black'>
+                                    <Link to={`/productFrutas/${product.id}`} className='text-decoration-none text-black'>
                                         <div className="product-content pt-3">
                                             <span className="price text-decoration-none">${product.price}</span>
                                             <h3 className="title pt-1">{product.Productname}</h3>
@@ -173,25 +176,25 @@ function Index() {
             </div>
 
             {/* Banner */}
-
             <div className="banners py-5">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6 banner-card overflow-hidden position-relative">
                             <img src={subBanner1} alt="" className="img-fluid rounded banner-img" />
                             <div className="banner-content position-absolute">
-                                <h3>NEW COLLECTION</h3>
-                                <h1>Intensive Glow C+ <br /> Serum 
+                                <h3>NUEVA COSECHA 🍓</h3>
+                                <h1>Huerto Fresco+ <br /> Frutas y Verduras de Temporada
                                 <br /></h1>
-                                <button className="btn banner-btn mt-2">EXPLORE MORE</button>
+                                <button className="btn banner-btn">DESCUBRE MÁS</button>
                             </div>
                         </div>
                         <div className="col-lg-6 banner-card overflow-hidden position-relative banner-mt">
                             <img src={subBanner2} alt="" className="img-fluid rounded banner-img" />
                             <div className="banner-content banner-content2 position-absolute">
-                                <h1>25% off Everything</h1>
-                                <p>Makeup with extened range in <br />colors for every human.</p>
-                                <button className="btn banner-btn mt-2">SHOP NOW</button>
+                                <h3>DISFRUTA</h3>
+                                <h1>25% de descuento en todo 🌿</h1>
+                                <p>Productos frescos y orgánicos con una amplia variedad para cada hogar.</p>
+                                <button className="btn banner-btn">COMPRA AHORA</button>
                             </div>
                         </div>
                     </div>
@@ -199,28 +202,27 @@ function Index() {
             </div>
 
             {/* Service */}
-
             <div className="container py-5 my-5">
                 <div className="row text-center">
                     <div className="col-lg-3 col-sm-6 mb-4">
                         <img src={sericeImg1} alt="" className='img-fluid'/>
-                        <h4 className="mt-3 mb-1">Free Shipping</h4>
-                        <p className="text-muted fs-6 fw-semibold">Free Shipping for orders over $130</p>
+                        <h4 className="mt-3 mb-1">Envío Gratis</h4>
+                        <p className="text-muted fs-6 fw-semibold">Envío gratuito para pedidos superiores a $50.000</p>
                     </div>
                     <div className="col-lg-3 col-sm-6 mb-4">
                         <img src={sericeImg2} alt="" className='img-fluid'/>
-                        <h4 className="mt-3 mb-1">Returns</h4>
-                        <p className="text-muted fs-6 fw-semibold">Within 30 days for an exchange.</p>
+                        <h4 className="mt-3 mb-1">Devoluciones</h4>
+                        <p className="text-muted fs-6 fw-semibold">Dentro de los 30 días para un cambio</p>
                     </div>
                     <div className="col-lg-3 col-sm-6 mb-4">
                         <img src={sericeImg3} alt="" className='img-fluid'/>
-                        <h4 className="mt-3 mb-1">Online Support</h4>
-                        <p className="text-muted fs-6 fw-semibold">24 Hours a day, 7 days a week</p>
+                        <h4 className="mt-3 mb-1">Atención en Línea</h4>
+                        <p className="text-muted fs-6 fw-semibold">Las 24 horas del día, los 7 días de la semana</p>
                     </div>
                     <div className="col-lg-3 col-sm-6 mb-4">
                         <img src={sericeImg4} alt="" className='img-fluid'/>
-                        <h4 className="mt-3 mb-1">Flexible Payment</h4>
-                        <p className="text-muted fs-6 fw-semibold">Pay with Multiple credit Cards</p>
+                        <h4 className="mt-3 mb-1">Pago Flexible</h4>
+                        <p className="text-muted fs-6 fw-semibold">Paga con múltiples tarjetas de crédito</p>
                     </div>
                 </div>
             </div>
@@ -228,24 +230,21 @@ function Index() {
             {/* Seen in */}
             <div className="text-center my-5 seen-in">
                 <div className="container">
-                    <h1 className="mb-5 fw-semibold">As seen in</h1>
+                    <h1 className="mb-5 fw-semibold">Visto en Huerto Hogar🌿</h1>
                     <div className="row pt-3 justify-content-center">
                         <div className="col-md-4 mb-4 seen-card">
                             <img src={brand1} alt="" className="img-fluid" />
-                            <p className="text-dark fs-5 mt-2 fw-semibold"> "Also the customer service is 
-                                phenomenal. I would purchase again."
+                            <p className="text-dark fs-5 mt-2 fw-semibold"> "Además, la atención al cliente es excelente. Sin duda volvería a comprar mis productos aquí."
                             </p>
                         </div>
                         <div className="col-md-4 mb-4 seen-card">
                             <img src={brand2} alt="" className="img-fluid" />
-                            <p className="text-dark fs-5 mt-2 fw-semibold"> "Great product line. Very attentive
-                                staff to deal with."
+                            <p className="text-dark fs-5 mt-2 fw-semibold"> "Gran variedad de frutas, verduras y lácteos frescos. El personal es muy amable y servicial."
                             </p>
                         </div>
                         <div className="col-md-4 mb-4 seen-card">
                             <img src={brand3} alt="" className="img-fluid" />
-                            <p className="text-dark fs-5 mt-2 fw-semibold"> "Are you looking to your beauty at 
-                            an affordable price? Look no further."
+                            <p className="text-dark fs-5 mt-2 fw-semibold"> "¿Buscas alimentos orgánicos y saludables a un precio justo? No busques más — Huerto Hogar lo tiene todo."
                             </p>
                         </div>
                     </div>
@@ -257,8 +256,8 @@ function Index() {
                 <div className="container">
                     <div className="row">
                         <div className="section-title mb-5 favorite-beauty-title text-center">
-                            <h2 className="fw-semibold fs-1">Customer favorite beauty essentials</h2>
-                            <p className="text-muted">Made using clean, non-toxic ingredients, our products are designed for everyone</p>
+                            <h2 className="fw-semibold fs-1">Los favoritos del huerto 🌱</h2>
+                            <p className="text-muted">Frescos, orgánicos y de origen local — en Huerto Hogar, llevamos lo mejor de la naturaleza directo a tu mesa.</p>
                         </div>
                     </div>
 
@@ -267,9 +266,9 @@ function Index() {
                             <div className="favourite-beauty-banner mb-lg-0 mb-5 position-relative">
                                 <img src={femalebanner} className='img-fluid' alt="" />
                                 <div className="favourite-beauty-banner-title">
-                                    <h3 className="fs-2">Empower Yourself</h3>
-                                    <p className="fs-6">Get the skin you want to feel</p>
-                                    <button className="btn btn-default">Explore More</button>
+                                    <h3 className="fs-2">Cuida tu bienestar</h3>
+                                    <p className="fs-6">Llénate de energía natural con frutas, verduras y productos orgánicos frescos.</p>
+                                    <button className="btn btn-default">Descubre Más</button>
                                 </div>
                             </div>
                         </div>
@@ -297,8 +296,8 @@ function Index() {
                                                         <span className={`tag badge text-white ${product.tag === 'New' ? 'bg-danger' : 'bg-success'}`}>
                                                             {product.tag}
                                                         </span>
-                                                    </div>
-                                                    <Link to={`/product/${product.id}`} className='text-decoration-none text-black'>
+                                                    </div> 
+                                                    <Link to={`/productFrutas/${product.id}`} className='text-decoration-none text-black'>
                                                         <div className="product-content pt-3">
                                                             <span className="price">${product.price}</span>
                                                             <h3 className="title pt-1">{product.Productname}</h3>
@@ -317,9 +316,8 @@ function Index() {
             {/* Discover */}
             <div className="discover container py-5">
                 <div className="section-title mb-5 favorite-beauty-title text-center">
-                    <h2 className="fw-semibold fs-1">More to Discover</h2>
-                    <p className="text-center">Our bundles were designed conveniently packager <br /> your
-                    tanning essentials while saving you money</p>
+                    <h2 className="fw-semibold fs-1">Mucho Más por Descubrir</h2>
+                    <p className="text-center">Ofrecemos lo mejor en frutas, verduras, Lacteos y productos orgánicos, cuidando tu salud y tu bolsillo con Huerto Hogar.</p>
                 </div>
                 <div className="row g-5">
                     <div className="col-md-6 discover-card text-center">
@@ -327,8 +325,8 @@ function Index() {
                             <img src={discover1} alt="Summer Collection" className="img-fluid" />
                         </div>
                         <div className="discover-info mt-3">
-                            <div>summer Colection</div>
-                            <button className="btn mt-2">Shop Now <i className="bi bi-arrow-right ms-2"></i></button>
+                            <div>Lacteos 🥛</div>
+                            <Link to='shopLacteos' className='btn mt-2'>Comprar Ahora<i className="bi bi-arrow-right ms-2"></i></Link>
                         </div>
                     </div>
                     <div className="col-md-6 discover-card text-center">
@@ -336,38 +334,38 @@ function Index() {
                             <img src={discover2} alt="From Our Blog" className="img-fluid" />
                         </div>
                         <div className="discover-info mt-3">
-                            <div>summer Colection</div>
-                            <button className="btn mt-2">Read More<i className="bi bi-arrow-right ms-2"></i></button>
+                            <div>Organicos 🌱</div>
+                            <Link to='shopOrg' className='btn mt-2'>Comprar Ahora<i className="bi bi-arrow-right ms-2"></i></Link>
                         </div>
                     </div>
                 </div>
             </div>
             
             {/* Social image */}
-            <div className="social-image-container py-5 px-5 mx-auto">
+            <div className="social-image-container py-5 px-5 mx-auto" id='seccion-bajar'>
                 <div className="row g-4">
                     <div className="col-lg-2 col-md-4">
                         <div className="social-wrapper position-relative overflow-hidden">
                             <img src={socialImage1} alt="" className="img-fluid"/>
-                            <i className="bi bi-instagram"></i>
+                            <i className="bi bi-telegram fs-1"></i>
                         </div>
                     </div>
                     <div className="col-lg-2 col-md-4">
                         <div className="social-wrapper position-relative overflow-hidden">
                             <img src={socialImage2} alt="" className="img-fluid"/>
-                            <i className="bi bi-instagram"></i>
+                            <i className="bi bi-facebook"></i>
                         </div>
                     </div>
                     <div className="col-lg-2 col-md-4">
                         <div className="social-wrapper position-relative overflow-hidden">
                             <img src={socialImage3} alt="" className="img-fluid"/>
-                            <i className="bi bi-instagram"></i>
+                            <i className="bi bi-twitter-x"></i>
                         </div>
                     </div>
                     <div className="col-lg-2 col-md-4">
                         <div className="social-wrapper position-relative overflow-hidden">
                             <img src={socialImage4} alt="" className="img-fluid"/>
-                            <i className="bi bi-instagram"></i>
+                            <i className="bi bi-youtube"></i>
                         </div>
                     </div>
                     <div className="col-lg-2 col-md-4">
@@ -378,8 +376,8 @@ function Index() {
                     </div>
                     <div className="col-lg-2 col-md-4">
                         <div className="social-wrapper position-relative overflow-hidden">
-                            <img src={socialImage1} alt="" className="img-fluid"/>
-                            <i className="bi bi-instagram"></i>
+                            <img src={socialImage6} alt="" className="img-fluid"/>
+                            <i className="bi bi-whatsapp"></i>
                         </div>
                     </div>
                 </div>

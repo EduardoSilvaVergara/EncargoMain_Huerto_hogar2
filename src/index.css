@@ -29,6 +29,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Navbar */
 
 .nav-wrapper {
     padding: 0 5%;
@@ -123,7 +124,7 @@ body {
 
 .hero-wrap {
     height: 90vh;
-    background-image: url(assets/hero-bg-1.webp);
+    background-image: url(assets/hero-1.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -133,11 +134,11 @@ body {
 }
 
 .hero-wrap2 {
-    background-image: url(assets/hero-bg-2.webp) !important;
+    background-image: url(assets/hero-2.jpg) !important;
 }
 
 .hero-wrap3 {
-    background-image: url(assets/hero-bg-3.webp) !important;
+    background-image: url(assets/hero-3.jpg) !important;
 }
 
 .hero-content {
@@ -146,7 +147,7 @@ body {
 }
 
 .hero-content h5 {
-    color: var(--black-color);
+    color: var(--white-color);
     opacity: 0;
     animation: anim-left 0.6s 0.3s forwards linear;
 }
@@ -154,6 +155,7 @@ body {
 .hero-content h1 {
     font-size: 4rem;
     font-weight: 600;
+    color: var(--white-color);
     opacity: 0;
     animation: anim-left 0.6s 0.6s forwards linear;
 }
@@ -161,7 +163,7 @@ body {
 .hero-content p {
     font-size: 1.2rem;
     width: 80%;
-    color: var(--text-color);
+    color: var(--white-color);
     opacity: 0;
     animation: anim-left 0.6s 0.9s forwards linear;
 }
@@ -478,17 +480,22 @@ body {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: 40px;
-    padding: 10px;
+    margin-top: 20px;
+    padding: 5px;
 }
 
 .banner-content h3 {
-    color: var(--black-color);
+    color: var(--white-color);
     font-size: 1.3rem;
 }
 
+.banner-content p{
+    color: var(--white-color);
+}
+
+
 .banner-content h1 {
-    color: var(--black-color);
+    color: var(--white-color);
     font-size: 2.2rem;
 }
 
@@ -693,7 +700,7 @@ body {
 .about-glowing-section {
     margin-top: 1px;
     min-height: 80vh;
-    background-image: url('assets2/fruta-1.jpg');
+    background-image: url('assets/fruta-1.jpg');
     background-repeat: no-repeat;
     background-position: right center;
     background-size: contain;
@@ -1096,3 +1103,4 @@ body {
     color: var(--white-color);
     text-decoration: none;
 }   
+

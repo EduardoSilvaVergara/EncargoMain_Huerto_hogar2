@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function Checkout() {
 
     const [deliveryOption, setDeliveryOption] = useState('ship');
-
+    const [showOrderModal, setShowOrderModal] = useState(false);
     const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
@@ -16,7 +16,8 @@ function Checkout() {
     }, []);
 
     const handlePlaceOrder = () => {
-        toast.success('Pedido realizado con éxito')
+        if (cartItems.length === 0) return;
+        setShowOrderModal(true);
     };
 
     const totalPrice = cartItems.reduce((acc, item) => {
@@ -24,7 +25,7 @@ function Checkout() {
         return acc + price * item.quantity;
     }, 0);
 
-    const estimatedTax = (totalPrice * 0.1).toFixed(2);
+    const estimatedTax = (totalPrice * 0.1).toFixed();
 
     return (
         <>
@@ -211,14 +212,14 @@ function Checkout() {
                                             <h6 className="mb-1">{item.Productname}</h6>
                                             <small className="text-muted">Cant. : {item.quantity}</small>
                                         </div>
-                                        <div className="fw-semibold">${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}</div>
+                                        <div className="fw-semibold">${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed()}</div>
                                     </div>
                                 ))
                             )}
                             <hr />
                             <div className="d-flex justify-content-between small mb-1">
                                 <span>Subtotal</span>
-                                <span>${totalPrice.toFixed(2)}</span>
+                                <span>${totalPrice.toFixed()}</span>
                             </div>
                             <div className="d-flex justify-content-between small mb-1">
                                 <span>Envío</span>
@@ -230,7 +231,7 @@ function Checkout() {
                             </div>
                             <div className="d-flex justify-content-between fw-bold border-top pt-2">
                                 <span>Total</span>
-                                <span>${(totalPrice + parseFloat(estimatedTax)).toFixed(2)}</span>
+                                <span>${(totalPrice + parseFloat(estimatedTax)).toFixed()}</span>
                             </div>
                             <button className="btn w-100 mt-3" onClick={handlePlaceOrder}>
                                 <i className="ri-secure-payment-line me-2"></i> Realizar pedido
@@ -243,6 +244,93 @@ function Checkout() {
                     </div>
                 </div>
             </div>
+
+            {/* Modal Boleta */}
+            <div className={`modal fade ${showOrderModal ? 'show d-block' : ''}`} tabIndex="-1" aria-labelledby="orderModalLabel" aria-hidden={!showOrderModal} style={{ backgroundColor: showOrderModal ? 'rgba(0,0,0,0.5)' : '' }}>
+                <div className="modal-dialog modal-dialog-centered modal-lg">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title fw-bold" id="orderModalLabel">Boleta de tu pedido</h5>
+                        </div>
+                        <div className="modal-body">
+                            <p><strong>Fecha:</strong> {new Date().toLocaleDateString()}</p>
+                            <hr />
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {cartItems.map(item => {
+                                        const priceNum = parseFloat(item.price.replace('$', ''));
+                                        return (
+                                            <tr key={item.id}>
+                                                <td>{item.Productname}</td>
+                                                <td>{item.quantity}</td>
+                                                <td>${priceNum.toFixed()}</td>
+                                                <td>${(priceNum * item.quantity).toFixed()}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                            <hr />
+                            <div className="d-flex justify-content-end flex-column gap-1">
+                                <div className="d-flex justify-content-between">
+                                    <span>Subtotal:</span>
+                                    <span>${totalPrice.toFixed()}</span>
+                                </div>
+                                <div className="d-flex justify-content-between">
+                                    <span>Impuesto estimado (10%):</span>
+                                    <span>${estimatedTax}</span>
+                                </div>
+                                <div className="d-flex justify-content-between fw-bold">
+                                    <span>Total:</span>
+                                    <span>${(totalPrice + parseFloat(estimatedTax)).toFixed()}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            {/* Este botón vacía carrito y redirige al inicio */}
+                            {/* Input y botón para enviar boleta por correo */}
+                            <div className="w-100 mb-3">
+                                <div className="input-group">
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        placeholder="Ingresa tu correo electrónico"
+                                    // Asumiendo que tienes un estado para el email, por ejemplo: value={email} onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                    <button
+                                        className="btn btn-primary"
+                                    // Aquí iría la lógica para enviar el email, por ejemplo: onClick={handleSendEmail}
+                                    >
+                                        Enviar Boleta por Correo
+                                    </button>
+                                </div>
+                            </div>
+                            <Link
+                                to='/'
+                                className="btn btn-success w-100"
+                                onClick={() => {
+                                    localStorage.removeItem('cart');
+                                    setCartItems([]);
+                                    window.dispatchEvent(new Event('cartUpdated'));
+                                    setShowOrderModal(false);
+                                }}
+                            >
+                                Volver al inicio
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
             <ToastContainer />
         </>
