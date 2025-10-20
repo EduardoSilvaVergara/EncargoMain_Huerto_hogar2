@@ -158,7 +158,7 @@ const About = () => {
                                 <a href="#"><i className="ri-youtube-line"></i></a>
                             </div>
                         </div>
-                        <h3 className="team-name">Fabrizio Gonzales R</h3>
+                        <h3 className="team-name">Fabrizio Gonzalez R</h3>
                         <p className="team-role">- Founder, CEO</p>
                     </div>
                 </div>
