@@ -1,38 +1,56 @@
-import React, {useState} from 'react'; 
+import React, { useState } from 'react'
+
+import head from './../assets2/naranja-1.png';
+import about1 from './../assets2/frutas-2.jpg';
+import about2 from './../assets2/frutas-3.jpg';
+
+import client1 from './../assets/brand-logo-1.png';
+import client2 from './../assets/brand-logo-2.png';
+import client3 from './../assets/brand-logo-3.png';
+import client4 from './../assets/brand-logo-4.png';
+import client5 from './../assets/brand-logo-5.png';
+import client6 from './../assets/brand-logo-6.png';
+
+import team1 from './../assets2/panda-ed.jpg';
+import team2 from './../assets2/gato-cr.jpg';
+import team3 from './../assets2/perro-fa.jpg';
 
 const About = () => {
     const [quote, setQuote] = useState(
-        "Productos orgánicos de alta calidad a precios justos, ofreciendo la combinación perfecta entre frescura, salud y accesibilidad. Cada fruta, verdura y lácteo garantiza un excelente valor y un sabor naturalmente superior."
+        '"Productos orgánicos de alta calidad a precios justos, ofreciendo la combinación perfecta entre frescura, salud y accesibilidad. Cada fruta, verdura y lácteo garantiza un excelente valor y un sabor naturalmente superior."'
     );
 
-    return(
+    return (
         <>
-            <section className='about-glowing-section d-flex aling-items-center'>
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col-md-6 text-md-start text center'>
-                            <p className='text-uppercase small mb-2'>Presentando</p>
-                            <h1 className='fw-bold display-5'>Huerto Hogar</h1>
+            {/* About Header */}
+            <section className="about-glowing-section d-flex align-items-center">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-6 text-md-start text-center">
+                            <p className="text-uppercase small mb-2">Presentando</p>
+                            <h1 className="fw-bold display-5">Huerto Hogar</h1>
                         </div>
                     </div>
                 </div>
             </section>
-            
-            <section className='py-5'>
-                <div className='container text-center mb-5'>
+
+            {/* Main About Content */}
+            <section className="py-5">
+                <div className="container text-center mb-5">
                     <img src={head} alt="decorative lead" />
-                    <h2 className='fw-bold'>
+                    <h2 className="fw-bold">
                         Nos esforzamos por ofrecer <br /> productos frescos y saludables con cariño y responsabilidad.
                     </h2>
-                    <p className='text-muted mx-auto' style={{maxWidth: '600px'}}>
+                    <p className="text-muted mx-auto" style={{ maxWidth: '600px' }}>
                         En Huerto Hogar nos apasiona llevar lo mejor de la naturaleza directamente a tu mesa. 
                         Ofrecemos frutas y verduras frescas, productos lácteos de calidad y alimentos orgánicos, 
                         seleccionados cuidadosamente para que disfrutes de lo más sano y delicioso.
                         Creemos en un estilo de vida saludable, sostenible y consciente, porque cuidar de ti y del planeta es nuestra prioridad. 
                         Compra con confianza y disfruta de lo natural con Huerto Hogar.
-                    </p>                    
+                    </p>
                 </div>
 
+                {/* Face Image and Description */}
                 <div className="container mb-5">
                     <div className="row align-items-center">
                         <div className="col-md-6 mb-4 mb-md-0 about-img1">
@@ -49,6 +67,7 @@ const About = () => {
                     </div>
                 </div>
 
+                {/* Mission and Product image */}
                 <div className="container">
                     <div className="row align-items-center flex-md-row-reverse">
                         <div className="col-md-6 mb-4 mb-md-0 about-img1">
@@ -158,7 +177,7 @@ const About = () => {
                                 <a href="#"><i className="ri-youtube-line"></i></a>
                             </div>
                         </div>
-                        <h3 className="team-name">Fabrizio Gonzalez R</h3>
+                        <h3 className="team-name" >Fabrizio Gonzalez R</h3>
                         <p className="team-role">- Founder, CEO</p>
                     </div>
                 </div>
@@ -166,5 +185,5 @@ const About = () => {
         </>
     )
 }
-export default About
 
+export default About

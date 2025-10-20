@@ -11,7 +11,7 @@ function Contact() {
                     </p>
 
                     <div className="row contact-boxes">
-
+                        {/* Address */}
                         <div className="contact-col">
                             <div className="contact-box bg-transparent border-0">
                                 <i className="ri-map-pin-line icon"></i>
@@ -23,6 +23,7 @@ function Contact() {
                             </div>
                         </div>
 
+                        {/* Contact */}
                         <div className="contact-col">
                             <div className="contact-box bg-transparent border-0">
                                 <i className="ri-phone-line icon"></i>
@@ -33,6 +34,7 @@ function Contact() {
                             </div>
                         </div>
 
+                        {/* Hours */}
                         <div className="contact-col">
                             <div className="contact-box bg-transparent border-0">
                                 <i className="ri-time-line icon"></i>
@@ -47,6 +49,7 @@ function Contact() {
 
             <div className="contact-page">
 
+                {/* Map Section */}
                 <section className="map-section container">
                     <iframe
                         title="Our Location"
@@ -56,6 +59,7 @@ function Contact() {
                     </iframe>
                 </section>
 
+                {/* Contact Form Section*/}
                 <section className="message-section">
                     <h2 className="form-title">Enviar un mensaje</h2>
                     <form className="contact-form">
