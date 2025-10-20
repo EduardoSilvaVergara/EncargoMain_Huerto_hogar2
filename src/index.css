@@ -193,3 +193,67 @@ button:focus-visible {
         font-size: 1.2rem;
     }
 }
+
+/* Contact Page */
+
+.contact-section{
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    color: #777;
+    font-size: 1rem;
+    margin-bottom: 40px;
+}
+
+.contact-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.contact-col {
+    flex: 1;
+    min-width: 250px;
+}
+
+.contact-box {
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.contact-box .icon{
+    font-size: 28px;
+    color: #4c6c5d;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.contact-box h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.contact-box p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.contact-box .link {
+    text-decoration: underline;
+    font-weight: 500;
+    color: var(--black-color);
+}
+
+
