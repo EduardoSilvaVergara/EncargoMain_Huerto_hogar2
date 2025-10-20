@@ -1,0 +1,179 @@
+
+  [
+    {
+      "id": 1,
+      "image": "/Verduras/zanahoria1.jpg",
+      "secondImage": "/Verduras/zanahoria2.jpg",
+      "Productname": "Zanahoria (por kilo)",
+      "price": "850",
+      "tag": "New",
+      "description": "Raíz dulce y crujiente, ideal para sopas, ensaladas o jugos.",
+      "collection": "Verduras Frescas",
+      "seller": "Huerto Natural"
+    },
+    {
+      "id": 2,
+      "image": "/Verduras/papa1.jpg",
+      "secondImage": "/Verduras/papa2.jpg",
+      "Productname": "Papa (por kilo)",
+      "price": "750",
+      "oldprice": "950",
+      "tag": "Sale",
+      "description": "Versátil y nutritiva, perfecta para cocer, freír o hornear.",
+      "collection": "Verduras Frescas",
+      "seller": "Campo Verde"
+    },
+    {
+      "id": 3,
+      "image": "/Verduras/tomate1.jpg",
+      "secondImage": "/Verduras/tomate2.jpg",
+      "Productname": "Tomate (por kilo)",
+      "price": "1200",
+      "tag": "New",
+      "description": "Jugoso y lleno de sabor, esencial en ensaladas y salsas.",
+      "collection": "Verduras Frescas",
+      "seller": "Delicias del Valle"
+    },
+    {
+      "id": 4,
+      "image": "/Verduras/cebolla1.jpg",
+      "secondImage": "/Verduras/cebolla2.jpg",
+      "Productname": "Cebolla (por kilo)",
+      "price": "900",
+      "oldprice": "1100",
+      "tag": "Sale",
+      "description": "Aromática y sabrosa, base de muchas preparaciones.",
+      "collection": "Verduras Frescas",
+      "seller": "Huerto Natural"
+    },
+    {
+      "id": 5,
+      "image": "/Verduras/lechuga1.jpg",
+      "secondImage": "/Verduras/lechuga2.jpg",
+      "Productname": "Lechuga (por unidad)",
+      "price": "1100",
+      "oldprice": "1400",
+      "tag": "Sale",
+      "description": "Fresca y crujiente, ideal para ensaladas ligeras.",
+      "collection": "Verduras Frescas",
+      "seller": "Verde Vivo"
+    },
+    {
+      "id": 6,
+      "image": "/Verduras/pimiento1.jpg",
+      "secondImage": "/Verduras/pimiento2.jpg",
+      "Productname": "Pimiento Rojo (por unidad)",
+      "price": "1600",
+      "description": "Colorido y dulce, excelente para salteados y rellenos.",
+      "collection": "Verduras Frescas",
+      "seller": "Campo Verde"
+    },
+    {
+      "id": 7,
+      "image": "/Verduras/brocoli1.jpg",
+      "secondImage": "/Verduras/brocoli2.jpg",
+      "Productname": "Brócoli (por unidad)",
+      "price": "1800",
+      "description": "Rico en fibra y antioxidantes, ideal al vapor o salteado.",
+      "collection": "Verduras Frescas",
+      "seller": "Verde Vivo"
+    },
+    {
+      "id": 8,
+      "image": "/Verduras/coliflor1.jpg",
+      "secondImage": "/Verduras/coliflor2.jpg",
+      "Productname": "Coliflor (por unidad)",
+      "price": "1700",
+      "description": "Suave y versátil, perfecta para gratinados y purés.",
+      "collection": "Verduras Frescas",
+      "seller": "Huerto Natural"
+    },
+    {
+      "id": 9,
+      "image": "/Verduras/espinaca1.jpg",
+      "secondImage": "/Verduras/espinaca2.jpg",
+      "Productname": "Espinaca (por kilo)",
+      "price": "1300",
+      "description": "Hojas verdes llenas de hierro, ideales para salteados o batidos.",
+      "collection": "Verduras Frescas",
+      "seller": "Delicias del Valle"
+    },
+    {
+      "id": 10,
+      "image": "/Verduras/acelga1.jpg",
+      "secondImage": "/Verduras/acelga2.jpg",
+      "Productname": "Acelga (por kilo)",
+      "price": "1200",
+      "oldprice": "1500",
+      "tag": "Sale",
+      "description": "Hojas grandes y nutritivas, perfectas para tortillas y guisos.",
+      "collection": "Verduras Frescas",
+      "seller": "Campo Verde"
+    },
+    {
+      "id": 11,
+      "image": "/Verduras/pepino1.jpg",
+      "secondImage": "/Verduras/pepino2.jpg",
+      "Productname": "Pepino (por unidad)",
+      "price": "1000",
+      "description": "Refrescante y ligero, ideal para ensaladas y jugos.",
+      "collection": "Verduras Frescas",
+      "seller": "Verde Vivo"
+    },
+    {
+      "id": 12,
+      "image": "/Verduras/zapalloItaliano1.jpg",
+      "secondImage": "/Verduras/zapalloItaliano2.jpg",
+      "Productname": "Zapallo Italiano (por unidad)",
+      "price": "1400",
+      "description": "Suave y versátil, excelente para salteados y rellenos.",
+      "collection": "Verduras Frescas",
+      "seller": "Huerto Natural"
+    },
+    {
+      "id": 13,
+      "image": "/Verduras/repollo1.jpg",
+      "secondImage": "/Verduras/repollo2.jpg",
+      "Productname": "Repollo (por unidad)",
+      "price": "1300",
+      "description": "Compacto y crujiente, ideal para ensaladas y fermentados.",
+      "collection": "Verduras Frescas",
+      "seller": "Campo Verde"
+    },
+    {
+      "id": 14,
+      "image": "/Verduras/choclo1.jpg",
+      "secondImage": "/Verduras/choclo2.jpg",
+      "Productname": "Choclo (por unidad)",
+      "price": "1600",
+      "oldprice": "2000",
+      "tag": "Sale",
+      "description": "Dulce y sabroso, perfecto para humitas y pastel de choclo.",
+      "collection": "Verduras Frescas",
+      "seller": "Delicias del Valle"
+    },
+    {
+      "id": 15,
+      "image": "/Verduras/porotos1.jpg",
+      "secondImage": "/Verduras/porotos2.jpg",
+      "Productname": "Porotos Verdes (por kilo)",
+      "price": "1900",
+      "oldprice": "2300",
+      "tag": "Sale",
+      "description": "Tiernos y nutritivos, ideales para salteados y guisos.",
+      "collection": "Verduras Frescas",
+      "seller": "Verde Vivo"
+    },
+    {
+      "id": 16,
+      "image": "/Verduras/rabano1.jpg",
+      "secondImage": "/Verduras/rabano2.jpg",
+      "Productname": "Rábanos (por kilo)",
+      "price": "1100",
+      "oldprice": "1400",
+      "tag": "Sale",
+      "description": "Picantes y crujientes, perfectos para ensaladas frescas.",
+      "collection": "Verduras Frescas",
+      "seller": "Huerto Natural"
+    }
+  ]
