@@ -4,7 +4,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import ProductDetailsLacteos from '../src/Pages/ProductDetailsLacteos'
 import products from '../src/ProductLacteos.json'
 
-// 📢 Mock toast (para no romper el test)
 vi.mock('react-toastify', () => ({
   toast: {
     success: vi.fn(),
@@ -17,7 +16,7 @@ describe('ProductDetailsLacteos Page', () => {
   const productId = product.id.toString()
 
   beforeEach(() => {
-    // Mock de localStorage
+
     const localStorageMock = (() => {
       let store = {}
       return {
@@ -29,7 +28,7 @@ describe('ProductDetailsLacteos Page', () => {
     })()
     vi.stubGlobal('localStorage', localStorageMock)
 
-    // Mock de dispatchEvent (para evitar errores)
+
     vi.spyOn(window, 'dispatchEvent').mockImplementation(() => {})
   })
 

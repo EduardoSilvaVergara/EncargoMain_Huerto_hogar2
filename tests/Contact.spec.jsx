@@ -51,16 +51,13 @@ describe('Contact Page', () => {
       </BrowserRouter>
     )
 
-    // Inputs
     expect(screen.getByPlaceholderText(/Nombre/i)).toBeInTheDocument()
     expect(
       screen.getByPlaceholderText(/Correo electrónico/i)
     ).toBeInTheDocument()
 
-    // Textarea
     expect(screen.getByPlaceholderText(/Mensaje/i)).toBeInTheDocument()
 
-    // Botón
     const button = screen.getByRole('button', { name: /Enviar/i })
     expect(button).toBeInTheDocument()
   })

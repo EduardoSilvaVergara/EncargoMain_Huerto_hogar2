@@ -31,16 +31,14 @@ describe("About Page", () => {
   it("debe actualizar la cita al hacer clic en un logo de cliente", () => {
     render(<About />);
 
-    // La cita inicial debe estar
+
     expect(
       screen.getByText(/Productos orgánicos de alta calidad/i)
     ).toBeInTheDocument();
 
-    // Hacer clic en el primer logo
     const clientLogo = screen.getByAltText(/Grand Golden Gallery/i);
     fireEvent.click(clientLogo);
 
-    // Verificar que la cita cambió
     expect(
       screen.getByText(/Productos de calidad a excelentes precios/i)
     ).toBeInTheDocument();

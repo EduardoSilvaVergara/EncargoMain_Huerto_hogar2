@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { describe, it, expect } from 'vitest'
 
-// 👉 Importa el componente de React, NO el JSON
+
 import Blog from '../src/Pages/Blog'
 
-// 👉 Importa el JSON con los datos
+
 import blogs from '../src/Blogs.json'
 
 describe('Blog Page', () => {
@@ -24,7 +24,6 @@ describe('Blog Page', () => {
         <Blog />
       </BrowserRouter>
     )
-    // 👇 busca por role "img" en lugar de alt fijo
     const images = screen.getAllByRole('img')
     expect(images.length).toBe(blogs.length)
   })

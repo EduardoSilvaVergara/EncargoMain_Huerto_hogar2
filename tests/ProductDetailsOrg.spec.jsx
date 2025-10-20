@@ -4,7 +4,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import ProductDetailsOrg from '../src/Pages/ProductDetailsOrg'
 import products from '../src/ProductOrganicos.json'
 
-// 📢 Mock toast (para no romper el test)
 vi.mock('react-toastify', () => ({
   toast: {
     success: vi.fn(),
@@ -17,7 +16,7 @@ describe('ProductDetailsOrg Page', () => {
   const productId = product.id.toString()
 
   beforeEach(() => {
-    // Mock de localStorage
+
     const localStorageMock = (() => {
       let store = {}
       return {
@@ -29,7 +28,6 @@ describe('ProductDetailsOrg Page', () => {
     })()
     vi.stubGlobal('localStorage', localStorageMock)
 
-    // Mock de dispatchEvent (para evitar errores)
     vi.spyOn(window, 'dispatchEvent').mockImplementation(() => {})
   })
 
@@ -73,7 +71,6 @@ describe('ProductDetailsOrg Page', () => {
     fireEvent.click(minusButton)
     expect(input.value).toBe('1')
 
-    // No debe bajar de 1
     fireEvent.click(minusButton)
     expect(input.value).toBe('1')
   })
