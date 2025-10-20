@@ -69,7 +69,7 @@ function ProductDetailsVerduras() {
                                     />
                                 ))}
                             </div>
-                            <img src={mainImage} className='img-fluid' alt="" />
+                            <img src={mainImage} className='img-fluid' alt="Imagen principal del producto" />
                         </div>
                     </div>
 
