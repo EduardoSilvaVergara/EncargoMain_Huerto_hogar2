@@ -17,7 +17,9 @@ function Blog() {
                     <div className='col-lg-4 col-md-6 mb-0'>
                         <div className="blog-items text-center position-relative">
                             <div className="blog-image w-100 position-relative overflow-hidden">
-                                <img src={blog.image} alt="blog-image" className="img-fluid" />
+                                <a href={blog.link} target='_blank' className='link-clean'>{blog.image}
+                                    <img src={blog.image} alt="blog-image" className="img-fluid" />
+                                </a>                                
                             </div>
                             <div className="blog-content pt-3 w-100 position-relative">
                                 <div className="blog-title">
