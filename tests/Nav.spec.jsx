@@ -60,8 +60,8 @@ describe("Componente Nav", () => {
         <Nav />
       </MemoryRouter>
     );
-    expect(screen.getAllByText("3")[0]).toBeInTheDocument(); // carrito
-    expect(screen.getAllByText("2")[0]).toBeInTheDocument(); // wishlist
+    expect(screen.getAllByText("3")[0]).toBeInTheDocument(); 
+    expect(screen.getAllByText("2")[0]).toBeInTheDocument(); 
   });
 
   it("muestra el modal de registro al hacer clic en el icono de persona", () => {
@@ -87,13 +87,13 @@ describe("Componente Nav", () => {
     localStorage.setItem("cart", JSON.stringify([{ id: 1, quantity: 10 }]));
     window.dispatchEvent(new StorageEvent("storage", { key: "cart" }));
 
-    // Como el componente no escucha storage, se mantiene en 3
+    
     expect(screen.getAllByText("3")[0]).toBeInTheDocument();
   });
 
 
   it("permite cerrar sesión y remueve el usuario de localStorage", () => {
-    // Simular usuario logueado
+    
     localStorage.setItem("user", JSON.stringify({ name: "User1", email: "user@test.com" }));
 
     render(
@@ -102,10 +102,9 @@ describe("Componente Nav", () => {
       </MemoryRouter>
     );
 
-    // Hacer logout
+    
     fireEvent.click(screen.getByText("Cerrar sesión"));
 
-    // Validar que localStorage quedó vacío
     expect(localStorage.getItem("user")).toBeNull();
   });
 

@@ -4,7 +4,6 @@ import { MemoryRouter } from "react-router-dom";
 import Wishlist from "../src/Pages/Wishlist";
 import { toast } from "react-toastify";
 
-// 🧩 Mock del toastify
 vi.mock("react-toastify", () => ({
   toast: {
     success: vi.fn(),
@@ -13,7 +12,6 @@ vi.mock("react-toastify", () => ({
   ToastContainer: () => <div data-testid="toast-container" />,
 }));
 
-// 🧩 Mock de localStorage
 const mockLocalStorage = (() => {
   let store = {};
   return {
@@ -28,7 +26,6 @@ const mockLocalStorage = (() => {
 })();
 Object.defineProperty(window, "localStorage", { value: mockLocalStorage });
 
-// 🧩 Mock del dispatchEvent
 window.dispatchEvent = vi.fn();
 
 describe("Componente Wishlist", () => {

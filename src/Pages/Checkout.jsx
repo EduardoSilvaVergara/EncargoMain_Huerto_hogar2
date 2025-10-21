@@ -246,7 +246,11 @@ function Checkout() {
             </div>
 
             {/* Modal Boleta */}
-            <div className={`modal fade ${showOrderModal ? 'show d-block' : ''}`} tabIndex="-1" aria-labelledby="orderModalLabel" aria-hidden={!showOrderModal} style={{ backgroundColor: showOrderModal ? 'rgba(0,0,0,0.5)' : '' }}>
+            <div className={`modal fade ${showOrderModal ? 'show d-block' : ''}`} 
+                    tabIndex="-1" 
+                    aria-labelledby="orderModalLabel" 
+                    aria-hidden={!showOrderModal} 
+                    style={{ backgroundColor: showOrderModal ? 'rgba(0,0,0,0.5)' : '' }}>
                 <div className="modal-dialog modal-dialog-centered modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">

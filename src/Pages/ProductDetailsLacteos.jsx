@@ -153,10 +153,19 @@ function ProductDetailsLacteos() {
                         </ul>
                     </div>
 
-                    <div className="tab-pane fade text-center" id="shipping" role="tabpanel">
+                    <div className="tab-pane fade" id="shipping" role="tabpanel">
                         <hr />
                         <p>
-                        <strong>agregar algo</strong>
+                            <strong>Envíos:</strong> Realizamos envíos a todo Chile.
+                            <br /><strong>Tiempo estimado de entrega:</strong> 1 a 3 días hábiles.
+                            <br />Todos nuestros productos se entregan en empaques que garantizan frescura y protección durante el transporte.
+                        </p>
+                        <p>
+                            <strong>Devoluciones:</strong> Aceptamos devoluciones por productos dañados o en mal estado dentro de las 24 horas siguientes a la entrega.
+                            <br />Para iniciar un proceso de devolución, contáctanos a nuestro correo de soporte o vía WhatsApp.
+                        </p>
+                        <p>
+                            <strong>Nota:</strong> Al tratarse de productos frescos, no aceptamos devoluciones por cambio de opinión, pero siempre buscamos soluciones para asegurar tu satisfacción.
                         </p>
                         <hr />
                     </div>

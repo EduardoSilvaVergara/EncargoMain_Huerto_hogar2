@@ -50,10 +50,10 @@ function Index() {
             const updated = [...existing, product];
             localStorage.setItem('wishlist', JSON.stringify(updated));
             window.dispatchEvent(new Event('wishlistUpdated'));
-            toast.success(`${product.Productname} added to your wishlist`);
+            toast.success(`${product.Productname} agregado a tu lista de deseos`);
         }
         else {
-            toast.info(`${product.Productname} is already in your wishlist`);
+            toast.info(`${product.Productname} ya está en tu lista de deseos`);
         }
 
     }
@@ -66,10 +66,10 @@ function Index() {
             const updatedCart = [...existing, updatedProduct];
             localStorage.setItem('cart', JSON.stringify(updatedCart));
             window.dispatchEvent(new Event('cartUpdated'));
-            toast.success(`${product.Productname} added to your cart!`);
+            toast.success(`${product.Productname} ¡agregado a tu carrito!`);
         }
         else {
-            toast.info(`${product.Productname} is already in your cart!`);
+            toast.info(`${product.Productname} ¡Ya esta en tu carrito!`);
         }
 
     }
@@ -185,7 +185,7 @@ function Index() {
                                 <h3>NUEVA COSECHA 🍓</h3>
                                 <h1>Huerto Fresco+ <br /> Frutas y Verduras de Temporada
                                 <br /></h1>
-                                <button className="btn banner-btn">DESCUBRE MÁS</button>
+                                <a href="#"><button className="btn banner-btn">DESCUBRE MÁS</button></a>
                             </div>
                         </div>
                         <div className="col-lg-6 banner-card overflow-hidden position-relative banner-mt">
@@ -194,7 +194,7 @@ function Index() {
                                 <h3>DISFRUTA</h3>
                                 <h1>25% de descuento en todo 🌿</h1>
                                 <p>Productos frescos y orgánicos con una amplia variedad para cada hogar.</p>
-                                <button className="btn banner-btn">COMPRA AHORA</button>
+                                <a href="#"><button className="btn banner-btn">COMPRA AHORA</button></a>
                             </div>
                         </div>
                     </div>
@@ -268,7 +268,7 @@ function Index() {
                                 <div className="favourite-beauty-banner-title">
                                     <h3 className="fs-2">Cuida tu bienestar</h3>
                                     <p className="fs-6">Llénate de energía natural con frutas, verduras y productos orgánicos frescos.</p>
-                                    <button className="btn btn-default">Descubre Más</button>
+                                    <a href="#"><button className="btn btn-default">Descubre Más</button></a>
                                 </div>
                             </div>
                         </div>
