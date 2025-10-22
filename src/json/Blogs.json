@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "title": "Qué plantar en octubre: guía para huertos caseros",
+    "pere": "Octubre es ideal para sembrar rúcula, kale, apio y raíces como remolacha. También puedes plantar aromáticas como tomillo y orégano.",
+    "image": "/ImageBlogs/blog-1.jpg",
+    "author": "El Mundo",
+    "date": "Oct 1, 2025",
+    "link": "https://www.elmundo.es/como/2025/10/01/68dce1f4fc6c83497d8b45a8.html"
+  },
+  {
+    "id": 2,
+    "title": "Primavera Vivero: cultiva más de 200 variedades en casa",
+    "pere": "Desde Santiago, Magdalena Undurraga impulsa el cultivo en casa con talleres, kits y despachos a domicilio.",
+    "image": "/ImageBlogs/blog-2.jpg",
+    "author": "Emol",
+    "date": "Sep 22, 2025",
+    "link": "https://www.emol.com/noticias/Economia/2025/09/22/1178131/maria-magdalena-undurraga-primavera-vivero.html"
+  },
+  {
+    "id": 3,
+    "title": "Sader entrega 4.700 kits para huertos familiares",
+    "pere": "El programa incluye árboles frutales, fertilizantes y herramientas para fomentar el autocultivo en zonas rurales y urbanas.",
+    "image": "/ImageBlogs/blog-3.jpg",
+    "author": "Ángulo 7",
+    "date": "Sep 22, 2025",
+    "link": "https://www.angulo7.com.mx/2025/noticias-puebla/sader-dara-4-7-mil-paquetes-para-gallineros-y-huertos-de-traspatio-en-puebla/646518/"
+  },
+  {
+    "id": 4,
+    "title": "Huertos urbanos en Valparaíso: vecinos recuperan espacios",
+    "pere": "Organizaciones comunitarias transforman sitios abandonados en huertos productivos, fomentando la soberanía alimentaria.",
+    "image": "/ImageBlogs/blog-4.jpg",
+    "author": "El Ciudadano",
+    "date": "Sep 28, 2025",
+    "link": "https://www.elciudadano.com/reportajes/huertos-urbanos-en-valparaiso/10/2025/"
+  },
+  {
+    "id": 5,
+    "title": "Cultiva en casa sin complicaciones",
+    "pere": "Portal Frutícola publica una guía completa para cultivar alimentos en espacios pequeños con métodos simples y sostenibles.",
+    "image": "/ImageBlogs/blog-5.jpg",
+    "author": "Portal Frutícola",
+    "date": "Abr 11, 2025",
+    "link": "https://www.portalfruticola.com/noticias/2025/04/11/agricultura-urbana/"
+  },
+  {
+    "id": 6,
+    "title": "Cultivos verticales: solución para balcones y terrazas",
+    "pere": "Investigadores de la U. de Chile destacan los huertos verticales como alternativa eficiente para espacios reducidos.",
+    "image": "/ImageBlogs/blog-6.jpg",
+    "author": "Universidad de Chile",
+    "date": "Sep 22, 2025",
+    "link": "https://uchile.cl/noticias/224310/especialistas-uchile-destacan-cultivos-verticales-en-espacios-urbanos"
+  },
+  {
+    "id": 7,
+    "title": "Talleres gratuitos de huerto urbano en Viña del Mar",
+    "pere": "La municipalidad ofrece talleres prácticos para aprender a cultivar hortalizas en casa, abiertos a toda la comunidad.",
+    "image": "/ImageBlogs/blog-7.jpg",
+    "author": "Municipalidad Viña del Mar",
+    "date": "Oct 5, 2025",
+    "link": "https://www.vinadelmar.cl/noticias/talleres-huerto-urbano-octubre-2025"
+  },
+  {
+    "id": 8,
+    "title": "Huertos escolares: educación y nutrición desde la tierra",
+    "pere": "Escuelas en Latinoamérica implementan huertos como parte del currículo para enseñar sostenibilidad y alimentación saludable.",
+    "image": "/ImageBlogs/blog-8.jpg",
+    "author": "FAO América Latina",
+    "date": "Oct 2, 2025",
+    "link": "https://www.fao.org/americas/noticias/ver/es/c/1654321/"
+  },
+  {
+    "id": 9,
+    "title": "Huertos medicinales: cultiva tus propias plantas curativas",
+    "pere": "Desde lavanda hasta caléndula, expertos recomiendan especies fáciles de cultivar en casa para preparar infusiones y ungüentos.",
+    "image": "/ImageBlogs/blog-9.jpg",
+    "author": "EcoPortal",
+    "date": "Oct 2, 2025",
+    "link": "https://www.ecoportal.net/temas-especiales/huertos-medicinales-en-casa/"
+  },
+  {
+    "id": 10,
+    "title": "Agricultura urbana en Chile: desafíos y oportunidades",
+    "pere": "Expertos analizan el crecimiento de la agricultura urbana y su impacto en la seguridad alimentaria y el medio ambiente.",
+    "image": "/ImageBlogs/blog-10.jpg",
+    "author": "La Tercera",
+    "date": "Oct 3, 2025",
+    "link": "https://www.latercera.com/nacional/agricultura-urbana-en-chile-desafios-y-oportunidades/"
+  },
+  {
+    "id": 11,
+    "title": "Huertos comunitarios: el renacer verde en zonas urbanas",
+    "pere": "Vecinos de Santiago impulsan huertos comunitarios como espacios de encuentro, educación y producción local.",
+    "image": "/ImageBlogs/blog-11.jpg",
+    "author": "Biobio Chile",
+    "date": "Oct 4, 2025",
+    "link": "https://www.biobiochile.cl/noticias/nacional/region-metropolitana/2025/10/04/huertos-comunitarios-el-renacer-verde-en-zonas-urbanas.shtml"
+  },
+  {
+    "id": 12,
+    "title": "Repartirán huertos urbanos en municipios poblanos",
+    "pere": "Más de 4 mil paquetes serán entregados para instalar huertos urbanos y gallineros, fortaleciendo la economía familiar.",
+    "image": "/ImageBlogs/blog-12.jpg",
+    "author": "Municipios Puebla",
+    "date": "Sep 21, 2025",
+    "link": "https://municipiospuebla.mx/nota/puebla/repartiran-apoyo-para-gallineros-y-huertos-urbanos-en-20-municipios-poblanos"
+  }
+]

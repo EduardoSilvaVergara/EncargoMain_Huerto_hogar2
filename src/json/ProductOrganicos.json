@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "image": "/Organicos/miel1.jpg",
+    "secondImage": "/Organicos/miel2.jpg",
+    "Productname": "Miel Orgánica 500g",
+    "price": "4500",
+    "tag": "New",
+    "description": "Endulzante natural rico en antioxidantes, ideal para infusiones y repostería.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Apícola del Sur"
+  },
+  {
+    "id": 2,
+    "image": "/Organicos/aceiteOliva1.jpg",
+    "secondImage": "/Organicos/aceiteOliva2.jpg",
+    "Productname": "Aceite de Oliva Extra Virgen 500ml",
+    "price": "6800",
+    "oldprice": "7500",
+    "tag": "Sale",
+    "description": "Aceite prensado en frío, perfecto para ensaladas y cocina saludable.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Oliva Verde"
+  },
+  {
+    "id": 3,
+    "image": "/Organicos/almendras1.jpg",
+    "secondImage": "/Organicos/almendras2.jpg",
+    "Productname": "Almendras Orgánicas 1kg",
+    "price": "9900",
+    "tag": "New",
+    "description": "Fruto seco crujiente y nutritivo, fuente de proteína y energía.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Frutos del Bosque"
+  },
+  {
+    "id": 4,
+    "image": "/Organicos/nueces1.jpg",
+    "secondImage": "/Organicos/nueces2.jpg",
+    "Productname": "Nueces Orgánicas 1kg",
+    "price": "8500",
+    "oldprice": "9500",
+    "tag": "Sale",
+    "description": "Ricas en omega 3, ideales para snacks o repostería.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Frutos del Bosque"
+  },
+  {
+    "id": 5,
+    "image": "/Organicos/harina1.jpg",
+    "secondImage": "/Organicos/harina2.jpg",
+    "Productname": "Harina Integral Orgánica 1kg",
+    "price": "2800",
+    "oldprice": "3200",
+    "tag": "Sale",
+    "description": "Harina rica en fibra, perfecta para panes y masas saludables.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Molino Natural"
+  },
+  {
+    "id": 6,
+    "image": "/Organicos/quinoa1.jpg",
+    "secondImage": "/Organicos/quinoa2.jpg",
+    "Productname": "Quinoa Orgánica 1kg",
+    "price": "5200",
+    "description": "Grano ancestral alto en proteína, ideal para ensaladas y guisos.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Grano Vivo"
+  },
+  {
+    "id": 7,
+    "image": "/Organicos/avena1.jpg",
+    "secondImage": "/Organicos/avena2.jpg",
+    "Productname": "Avena Orgánica 1kg",
+    "price": "2600",
+    "description": "Fuente de energía y fibra, perfecta para desayunos nutritivos.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Grano Vivo"
+  },
+  {
+    "id": 8,
+    "image": "/Organicos/chia1.jpg",
+    "secondImage": "/Organicos/chia2.jpg",
+    "Productname": "Semillas de Chía Orgánicas 500g",
+    "price": "3400",
+    "description": "Pequeñas pero poderosas, ricas en omega 3 y fibra.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Semillas del Sur"
+  },
+  {
+    "id": 9,
+    "image": "/Organicos/cafe1.jpg",
+    "secondImage": "/Organicos/cafe2.jpg",
+    "Productname": "Café Orgánico Molido 250g",
+    "price": "4200",
+    "description": "Aroma intenso y sabor suave, cultivado sin pesticidas.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Café Andino"
+  },
+  {
+    "id": 10,
+    "image": "/Organicos/teVerde1.jpg",
+    "secondImage": "/Organicos/teVerde2.jpg",
+    "Productname": "Té Verde Orgánico 20 bolsas",
+    "price": "2100",
+    "oldprice": "2500",
+    "tag": "Sale",
+    "description": "Infusión antioxidante, ideal para relajarse y cuidar tu salud.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Herbolaria Viva"
+  },
+  {
+    "id": 11,
+    "image": "/Organicos/cacao1.jpg",
+    "secondImage": "/Organicos/cacao2.jpg",
+    "Productname": "Cacao Orgánico en Polvo 250g",
+    "price": "3900",
+    "description": "Sabor intenso y natural, perfecto para batidos y postres.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Cacao Puro"
+  },
+  {
+    "id": 12,
+    "image": "/Organicos/vinagreManzana1.jpg",
+    "secondImage": "/Organicos/vinagreManzana2.jpg",
+    "Productname": "Vinagre de Manzana Orgánico 500ml",
+    "price": "2800",
+    "description": "Fermentado natural, ideal para aderezos y bienestar digestivo.",
+    "collection": "Orgánicos Naturales",
+    "seller": "La Huerta Viva"
+  },
+  {
+    "id": 13,
+    "image": "/Organicos/pan1.jpg",
+    "secondImage": "/Organicos/pan2.jpg",
+    "Productname": "Pan Integral Orgánico",
+    "price": "2200",
+    "description": "Pan saludable y sabroso, elaborado con harina sin refinar.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Panadería Verde"
+  },
+  {
+    "id": 14,
+    "image": "/Organicos/granola1.jpg",
+    "secondImage": "/Organicos/granola2.jpg",
+    "Productname": "Granola Orgánica 500g",
+    "price": "3600",
+    "oldprice": "4000",
+    "tag": "Sale",
+    "description": "Mezcla crocante de cereales y frutos secos, ideal para desayunos.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Grano Vivo"
+  },
+  {
+    "id": 15,
+    "image": "/Organicos/lecheVegetal1.jpg",
+    "secondImage": "/Organicos/lecheVegetal2.jpg",
+    "Productname": "Leche Vegetal Orgánica (almendra) 1L",
+    "price": "2900",
+    "oldprice": "3400",
+    "tag": "Sale",
+    "description": "Alternativa sin lactosa, suave y nutritiva para cualquier momento.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Bebidas del Bosque"
+  },
+  {
+    "id": 16,
+    "image": "/Organicos/mermelada1.jpg",
+    "secondImage": "/Organicos/mermelada2.jpg",
+    "Productname": "Mermelada Orgánica de Frambuesa 250g",
+    "price": "3200",
+    "oldprice": "3800",
+    "tag": "Sale",
+    "description": "Dulce natural con fruta real, perfecta para tostadas y postres.",
+    "collection": "Orgánicos Naturales",
+    "seller": "Delicias del Campo"
+  }
+]
