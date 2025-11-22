@@ -1,40 +1,121 @@
-import React, { useEffect, useState } from 'react'
-
-import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { createCheckout } from '../api'
 
 function Checkout() {
+    const [deliveryOption, setDeliveryOption] = useState('ship')
+    const [showOrderModal, setShowOrderModal] = useState(false)
+    const [cartItems, setCartItems] = useState([])
 
-    const [deliveryOption, setDeliveryOption] = useState('ship');
-    const [showOrderModal, setShowOrderModal] = useState(false);
-    const [cartItems, setCartItems] = useState([]);
+    // Datos del formulario
+    const [email, setEmail] = useState('')
+    const [telefono, setTelefono] = useState('')
+    const [nombre, setNombre] = useState('')
+    const [apellido, setApellido] = useState('')
+    const [direccion, setDireccion] = useState('')
+    const [ciudad, setCiudad] = useState('Santiago')
+
+    // Boleta devuelta por backend y control de envío
+    const [boleta, setBoleta] = useState(null)
+    const [sending, setSending] = useState(false)
 
     useEffect(() => {
-        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
-        setCartItems(savedCart);
-    }, []);
+        const savedCart = JSON.parse(localStorage.getItem('cart')) || []
+        setCartItems(savedCart)
+    }, [])
 
-    const handlePlaceOrder = () => {
-        if (cartItems.length === 0) return;
-        setShowOrderModal(true);
-    };
+    const parsePrice = (p) =>
+        Number(String(p).replace(/[^0-9.,]/g, '').replace('.', '').replace(',', '.')) || 0
 
-    const totalPrice = cartItems.reduce((acc, item) => {
-        const price = parseFloat(item.price.replace('$', ''));
-        return acc + price * item.quantity;
-    }, 0);
+    const subtotal = useMemo(() => {
+        return cartItems.reduce((acc, item) => {
+            const price = parsePrice(item.price)
+            return acc + price * (item.quantity || 1)
+        }, 0)
+    }, [cartItems])
 
-    const estimatedTax = (totalPrice * 0.1).toFixed();
+    const estimatedTax = Math.round(subtotal * 0.10) // 10% en UI (ajustable)
+    const totalUI = subtotal + estimatedTax
+
+    const handlePlaceOrder = async () => {
+        if (cartItems.length === 0 || sending) return
+        try {
+            setSending(true)
+
+            const items = cartItems.map(item => ({
+                productoId: item.id,
+                nombre: item.Productname || item.productname || 'Producto',
+                categoria: item.category || '',
+                imagen: item.image || '',
+                cantidad: item.quantity || 1,
+                precioUnitario: parsePrice(item.price),
+            }))
+
+            const payload = {
+                nombre: (nombre || '') + (apellido ? ` ${apellido}` : '') || 'Cliente',
+                email,
+                telefono,
+                direccion,
+                ciudad,
+                total: totalUI,
+                items,
+            }
+
+            const res = await createCheckout(payload)
+            setBoleta(res.data)
+            setShowOrderModal(true)
+        } catch (e) {
+            console.error('Error checkout:', e)
+            alert('No se pudo procesar el pedido. Revisa los datos e inténtalo nuevamente.')
+        } finally {
+            setSending(false)
+        }
+    }
+
+    const closeAndReset = () => {
+        localStorage.removeItem('cart')
+        setCartItems([])
+        window.dispatchEvent(new Event('cartUpdated'))
+        setShowOrderModal(false)
+        setBoleta(null)
+    }
+
+    
+    
+    
+    const uiNeto = Number((totalUI / 1.19));
+    const neto = boleta?.neto !== undefined && boleta?.neto !== null ? Number(boleta.neto) : uiNeto;
+
+    const uiIva = Number((totalUI - uiNeto));
+    const iva = boleta?.iva !== undefined && boleta?.iva !== null ? Number(boleta.iva) : uiIva;
+
+    const uiTotal = Number(totalUI);
+    const total = boleta?.total !== undefined && boleta?.total !== null ? Number(boleta.total) : uiTotal;
 
     return (
         <>
             <div className="container my-5 pt-1">
                 <div className="row g-4 mt-5">
+                    {/* Columna izquierda: formulario */}
                     <div className="col-lg-7">
                         <h5>Contacto</h5>
                         <div className="mb-3">
-                            <input type="text" className='form-control' placeholder='Correo electrónico o número de teléfono' />
+                            <input
+                                type="email"
+                                className='form-control'
+                                placeholder='Correo electrónico'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <input
+                                type="text"
+                                className='form-control'
+                                placeholder='Número de teléfono (opcional)'
+                                value={telefono}
+                                onChange={(e) => setTelefono(e.target.value)}
+                            />
                         </div>
                         <div className="form-check mb-4">
                             <input className='form-check-input' type="checkbox" id='newsCheck' />
@@ -42,6 +123,7 @@ function Checkout() {
                                 Envíame noticias y ofertas por correo
                             </label>
                         </div>
+
                         <h5>Entrega</h5>
                         <div>
                             <div className="mb-3">
@@ -73,22 +155,32 @@ function Checkout() {
                             {deliveryOption === 'ship' && (
                                 <div className="row mb-3">
                                     <div className="mb-3">
-                                        <select className='form-select'>
+                                        <select
+                                            className='form-select'
+                                            value={ciudad}
+                                            onChange={(e) => setCiudad(e.target.value)}
+                                        >
                                             <option>Santiago</option>
                                             <option>Valparaiso</option>
                                             <option>Punta Arenas</option>
                                         </select>
                                     </div>
                                     <div className="col">
-                                        <input type="text"
+                                        <input
+                                            type="text"
                                             className='form-control'
                                             placeholder='Nombre (opcional)'
+                                            value={nombre}
+                                            onChange={(e) => setNombre(e.target.value)}
                                         />
                                     </div>
                                     <div className="col">
-                                        <input type="text"
+                                        <input
+                                            type="text"
                                             className='form-control'
                                             placeholder='Apellido (opcional)'
+                                            value={apellido}
+                                            onChange={(e) => setApellido(e.target.value)}
                                         />
                                     </div>
                                 </div>
@@ -119,7 +211,7 @@ function Checkout() {
                                                 href="#"
                                                 className='text-decoration-underline'
                                                 style={{ color: '#7b1c1c' }}
-                                            >Enviar a dirección</a> {' '}
+                                            >Enviar a dirección</a>{' '}
                                         </div>
                                     </div>
                                 </div>
@@ -127,14 +219,26 @@ function Checkout() {
                         </div>
 
                         <div className="mb-3">
-                            <input type="text" className='form-control' placeholder='Dirección' />
+                            <input
+                                type="text"
+                                className='form-control'
+                                placeholder='Dirección'
+                                value={direccion}
+                                onChange={(e) => setDireccion(e.target.value)}
+                            />
                         </div>
                         <div className="mb-3">
                             <input type="text" className='form-control' placeholder='Apartamento, suite, etc. (opcional)' />
                         </div>
                         <div className="row mb-3">
                             <div className="col">
-                                <input type="text" className='form-control' placeholder='Ciudad' />
+                                <input
+                                    type="text"
+                                    className='form-control'
+                                    placeholder='Ciudad'
+                                    value={ciudad}
+                                    onChange={(e) => setCiudad(e.target.value)}
+                                />
                             </div>
                             <div className="col">
                                 <input type="text" className='form-control' placeholder='Código Postal (opcional)' />
@@ -182,21 +286,20 @@ function Checkout() {
                                     </div>
 
                                     <div className="form-check mb-3">
-                                        <input className="form-check-input" type="checkbox" id="billingCheck" checked />
-                                        <label className="form-check-label" for="billingCheck" >
+                                        <input className="form-check-input" type="checkbox" id="billingCheck" defaultChecked />
+                                        <label className="form-check-label" htmlFor="billingCheck" >
                                             Usar la dirección de envío como dirección de facturación
                                         </label>
                                     </div>
                                 </div>
                             </div>
-
-                            <button className="btn w-100 mt-4 py-2 fw-semibold">Pagar ahora</button>
-
                             <div className="mt-5 border-top pt-3">
                                 <a href="#" className="text-decoration-none small text-decoration-underline">Política de privacidad</a>
                             </div>
                         </div>
                     </div>
+
+                    {/* Columna derecha: resumen */}
                     <div className="col-lg-5">
                         <div className="card border-0 shadow-sm rounded-4 p-4">
                             <h5 className="fw-bold mb-3">
@@ -205,21 +308,26 @@ function Checkout() {
                             {cartItems.length === 0 ? (
                                 <p className="text-muted">¡Tu carrito está vacío!</p>
                             ) : (
-                                cartItems.map(item => (
-                                    <div key={item.id} className="d-flex align-items-center mb-3 border-bottom pb-2">
-                                        <img src={item.image} className='rounded' width='60' height='60' style={{ objectFit: 'cover', marginRight: '10px' }} alt="" />
-                                        <div className="flex-grow-1">
-                                            <h6 className="mb-1">{item.Productname}</h6>
-                                            <small className="text-muted">Cant. : {item.quantity}</small>
+                                cartItems.map(item => {
+                                    const priceNum = parsePrice(item.price)
+                                    return (
+                                        <div key={item.id} className="d-flex align-items-center mb-3 border-bottom pb-2">
+                                            <img src={item.image} className='rounded' width='60' height='60' style={{ objectFit: 'cover', marginRight: '10px' }} alt="" />
+                                            <div className="flex-grow-1">
+                                                <h6 className="mb-1">{item.Productname || item.productname}</h6>
+                                                <small className="text-muted">Cant. : {item.quantity}</small>
+                                            </div>
+                                            <div className="fw-semibold">
+                                                ${(priceNum * (item.quantity || 1)).toFixed()}
+                                            </div>
                                         </div>
-                                        <div className="fw-semibold">${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed()}</div>
-                                    </div>
-                                ))
+                                    )
+                                })
                             )}
                             <hr />
                             <div className="d-flex justify-content-between small mb-1">
                                 <span>Subtotal</span>
-                                <span>${totalPrice.toFixed()}</span>
+                                <span>${subtotal.toFixed()}</span>
                             </div>
                             <div className="d-flex justify-content-between small mb-1">
                                 <span>Envío</span>
@@ -227,14 +335,14 @@ function Checkout() {
                             </div>
                             <div className="d-flex justify-content-between small mb-1">
                                 <span>Impuesto estimado</span>
-                                <span>${estimatedTax}</span>
+                                <span>${estimatedTax.toFixed()}</span>
                             </div>
                             <div className="d-flex justify-content-between fw-bold border-top pt-2">
                                 <span>Total</span>
-                                <span>${(totalPrice + parseFloat(estimatedTax)).toFixed()}</span>
+                                <span>${(totalUI).toFixed()}</span>
                             </div>
-                            <button className="btn w-100 mt-3" onClick={handlePlaceOrder}>
-                                <i className="ri-secure-payment-line me-2"></i> Realizar pedido
+                            <button className="btn w-100 mt-3" onClick={handlePlaceOrder} disabled={sending || cartItems.length === 0}>
+                                <i className="ri-secure-payment-line me-2"></i> {sending ? 'Procesando...' : 'Realizar pedido'}
                             </button>
 
                             <Link to='/cart' className='btn mt-2 text-decoration-none'>
@@ -246,18 +354,29 @@ function Checkout() {
             </div>
 
             {/* Modal Boleta */}
-            <div className={`modal fade ${showOrderModal ? 'show d-block' : ''}`} 
-                    tabIndex="-1" 
-                    aria-labelledby="orderModalLabel" 
-                    aria-hidden={!showOrderModal} 
-                    style={{ backgroundColor: showOrderModal ? 'rgba(0,0,0,0.5)' : '' }}>
+            <div
+                className={`modal fade ${showOrderModal ? 'show d-block' : ''}`}
+                tabIndex="-1"
+                aria-labelledby="orderModalLabel"
+                aria-hidden={!showOrderModal}
+                style={{ backgroundColor: showOrderModal ? 'rgba(0,0,0,0.5)' : '' }}
+            >
                 <div className="modal-dialog modal-dialog-centered modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title fw-bold" id="orderModalLabel">Boleta de tu pedido</h5>
+                            <h5 className="modal-title fw-bold" id="orderModalLabel">
+                                Boleta de tu pedido {boleta?.id ? `#${boleta.id}` : ''}
+                            </h5>
                         </div>
                         <div className="modal-body">
                             <p><strong>Fecha:</strong> {new Date().toLocaleDateString()}</p>
+                            {boleta && (
+                                <p className="mb-2">
+                                    <strong>Neto:</strong> ${neto.toFixed(0)} {' | '}
+                                    <strong>IVA:</strong> ${iva.toFixed(0)} {' | '}
+                                    <strong>Total:</strong> ${total.toFixed(0)} 
+                                </p>
+                            )}
                             <hr />
                             <table className="table">
                                 <thead>
@@ -270,13 +389,14 @@ function Checkout() {
                                 </thead>
                                 <tbody>
                                     {cartItems.map(item => {
-                                        const priceNum = parseFloat(item.price.replace('$', ''));
+                                        const priceNum = parsePrice(item.price)
+                                        const qty = item.quantity || 1
                                         return (
                                             <tr key={item.id}>
-                                                <td>{item.Productname}</td>
-                                                <td>{item.quantity}</td>
+                                                <td>{item.Productname || item.productname || 'Producto'}</td>
+                                                <td>{qty}</td>
                                                 <td>${priceNum.toFixed()}</td>
-                                                <td>${(priceNum * item.quantity).toFixed()}</td>
+                                                <td>${(priceNum * qty).toFixed()}</td>
                                             </tr>
                                         )
                                     })}
@@ -286,59 +406,31 @@ function Checkout() {
                             <div className="d-flex justify-content-end flex-column gap-1">
                                 <div className="d-flex justify-content-between">
                                     <span>Subtotal:</span>
-                                    <span>${totalPrice.toFixed()}</span>
+                                    <span>${subtotal.toFixed()}</span>
                                 </div>
                                 <div className="d-flex justify-content-between">
                                     <span>Impuesto estimado (10%):</span>
-                                    <span>${estimatedTax}</span>
+                                    <span>${estimatedTax.toFixed()}</span>
                                 </div>
                                 <div className="d-flex justify-content-between fw-bold">
                                     <span>Total:</span>
-                                    <span>${(totalPrice + parseFloat(estimatedTax)).toFixed()}</span>
+                                    <span>${(totalUI).toFixed()}</span>
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            {/* Este botón vacía carrito y redirige al inicio */}
-                            {/* Input y botón para enviar boleta por correo */}
-                            <div className="w-100 mb-3">
-                                <div className="input-group">
-                                    <input
-                                        type="email"
-                                        className="form-control"
-                                        placeholder="Ingresa tu correo electrónico"
-                                    // Asumiendo que tienes un estado para el email, por ejemplo: value={email} onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                    <button
-                                        className="btn btn-primary"
-                                    // Aquí iría la lógica para enviar el email, por ejemplo: onClick={handleSendEmail}
-                                    >
-                                        Enviar Boleta por Correo
-                                    </button>
-                                </div>
-                            </div>
-                            <Link
-                                to='/'
+                            <button
+                                type="button"
                                 className="btn btn-success w-100"
-                                onClick={() => {
-                                    localStorage.removeItem('cart');
-                                    setCartItems([]);
-                                    window.dispatchEvent(new Event('cartUpdated'));
-                                    setShowOrderModal(false);
-                                }}
+                                onClick={closeAndReset}
                             >
                                 Volver al inicio
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-            <ToastContainer />
         </>
     )
 }
-
 export default Checkout

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { createUsuario } from '../api';  // ← Agrega este import
 
 function Nav() {
     const [cartCount, setCartCount] = useState(0);
@@ -43,16 +44,29 @@ function Nav() {
         window.bootstrap.Modal.getInstance(document.getElementById('signinModal')).hide();
     };
 
-    // Función de registro
-    const handleSignup = (e) => {
+    // Función de registro (modificada para guardar en BD)
+    const handleSignup = async (e) => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const newUser = { name, email, password };
-        localStorage.setItem('user', JSON.stringify(newUser));
-        setUser(newUser);
-        window.bootstrap.Modal.getInstance(document.getElementById('signupModal')).hide();
+        
+        try {
+            // Envía datos al backend para guardar en BD
+            await createUsuario({ nombre: name, email, contraseña: password });
+            
+            // Loguea automáticamente al usuario en frontend
+            const newUser = { name, email, password };
+            localStorage.setItem('user', JSON.stringify(newUser));
+            setUser(newUser);
+            
+            // Cierra modal y muestra mensaje
+            window.bootstrap.Modal.getInstance(document.getElementById('signupModal')).hide();
+            alert("Registro exitoso! Bienvenido.");
+        } catch (error) {
+            console.error("Error al registrar:", error);
+            alert("Error al registrar. Intenta de nuevo.");
+        }
     };
 
     // Función logout
@@ -101,10 +115,7 @@ function Nav() {
 
                         {/* Icons */}
                         <ul className="navbar-nav d-none d-lg-flex align-items-center gap-4">
-                            <li className="nav-item p-0 mt-0">
-                                <button className="btn p-0 border-0 bg-transparent">
-                                    <i className="bi bi-search fs-5 text-dark"></i> </button>
-                            </li>
+                            
                             {!user ? (
                                 <li className="nav-item">
                                     <a href="#" data-bs-toggle='modal' data-bs-target='#signinModal' data-testid="signin-link">
@@ -139,12 +150,6 @@ function Nav() {
 
                         {/* Iconos mobile */}
                         <ul className="d-lg-none d-flex align-items-center p-3 mt-2 gap-3">
-                            {/* Buscador */}
-                            <li className="nav-item">
-                                <button className="btn p-0 border-0 bg-transparent">
-                                    <i className="bi bi-search fs-5 text-dark"></i>
-                                </button>
-                            </li>
 
                             {/* Usuario */}
                             <li className="nav-item">
@@ -178,8 +183,6 @@ function Nav() {
                     </div>
                 </nav>
             </div>
-
-
 
             {/* Modal Registrarse */}
             <div className="modal fade" id='signupModal' tabIndex='-1' aria-hidden='true' role="dialog" aria-labelledby="signupModalLabel" data-testid="signupModal">

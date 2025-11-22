@@ -18,10 +18,19 @@ function ProductDetailsVerduras() {
     const [images, setImages] = useState([]);
     const [quantity, setQuantity] = useState(1);
 
+    const resolveImagePath = (img) => {
+        if (!img) return img;
+        const base = import.meta.env.BASE_URL || '/';
+        const imgPath = img.startsWith('/') ? img.slice(1) : img;
+        if (base === './') return imgPath;
+        return base.endsWith('/') ? base + imgPath : base + '/' + imgPath;
+    }
+
     useEffect(() => {
         if (product) {
-            setMainImage(product.image);
-            setImages([product.image, product.secondImage].filter(Boolean));
+            const resolvedMain = resolveImagePath(product.image);
+            setMainImage(resolvedMain);
+            setImages([product.image, product.secondImage].filter(Boolean).map(resolveImagePath));
             setQuantity(1)
         }
     }, [product]);
