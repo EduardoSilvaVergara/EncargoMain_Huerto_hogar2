@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { createUsuario } from '../api';  // ← Agrega este import
+import { Link, useNavigate } from 'react-router-dom';
+import { createUsuario, loginUsuario } from '../api';
 
 function Nav() {
     const [cartCount, setCartCount] = useState(0);
     const [wishlistCount, setWishlistCount] = useState(0);
-    const [user, setUser] = useState(null); // Estado del usuario logueado
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
 
     const updateCounts = () => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -22,7 +23,6 @@ function Nav() {
         window.addEventListener('cartUpdated', handleCartUpdate);
         window.addEventListener('wishlistUpdated', handleWishlistUpdate);
 
-        // Cargar usuario desde localStorage
         const savedUser = JSON.parse(localStorage.getItem('user'));
         if (savedUser) setUser(savedUser);
 
@@ -32,19 +32,37 @@ function Nav() {
         };
     }, []);
 
-    // Función de login
-    const handleLogin = (e) => {
+    // Función de login (MODIFICADA para conectar con backend)
+    const handleLogin = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const savedUser = { name: "Usuario", email, password };
-        localStorage.setItem('user', JSON.stringify(savedUser));
-        setUser(savedUser);
-        // Cerrar modal
-        window.bootstrap.Modal.getInstance(document.getElementById('signinModal')).hide();
+        
+        try {
+            const userData = await loginUsuario({ 
+                email, 
+                contraseña: password 
+            });
+            
+            localStorage.setItem('user', JSON.stringify(userData));
+            setUser(userData);
+            
+            const modal = window.bootstrap.Modal.getInstance(document.getElementById('signinModal'));
+            modal.hide();
+            
+            // Si es admin, redirigir al dashboard
+            if (userData.rol === 'ADMIN') {
+                navigate('/admin/dashboard');
+            }
+            
+            alert(`Bienvenido ${userData.nombre}!`);
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);
+            alert("Credenciales incorrectas. Intenta de nuevo.");
+        }
     };
 
-    // Función de registro (modificada para guardar en BD)
+    // Función de registro
     const handleSignup = async (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -52,16 +70,19 @@ function Nav() {
         const password = e.target.password.value;
         
         try {
-            // Envía datos al backend para guardar en BD
-            await createUsuario({ nombre: name, email, contraseña: password });
+            await createUsuario({ 
+                nombre: name, 
+                email, 
+                contraseña: password,
+                rol: 'USER' // Por defecto USER
+            });
             
-            // Loguea automáticamente al usuario en frontend
-            const newUser = { name, email, password };
+            const newUser = { name, email, rol: 'USER' };
             localStorage.setItem('user', JSON.stringify(newUser));
             setUser(newUser);
             
-            // Cierra modal y muestra mensaje
-            window.bootstrap.Modal.getInstance(document.getElementById('signupModal')).hide();
+            const modal = window.bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+            modal.hide();
             alert("Registro exitoso! Bienvenido.");
         } catch (error) {
             console.error("Error al registrar:", error);
@@ -69,27 +90,24 @@ function Nav() {
         }
     };
 
-    // Función logout
     const handleLogout = () => {
         localStorage.removeItem('user');
         setUser(null);
+        navigate('/');
     };
 
     return (
         <>
-            {/* Navbar */}
             <div className="nav w-100 fixed-top bg-white shadow-sm">
                 <nav className="navbar navbar-expand-lg py-3 justify-content-between align-items-center w-100 nav-wrapper" data-testid="navbar">
                     <button className="navbar-toggler" type='button' data-bs-toggle="collapse" data-bs-target="#navbarNav">
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    {/* Logo movil */}
                     <Link to='/' className='navbar-brand mx-auto order-0 d-lg-none d-flex' data-testid="nav-logo">
                         <h2 className="m-0 fw-bold" style={{ letterSpacing: '2px' }}>Huerto Hogar</h2>
                     </Link>
 
-                    {/* Main navbar */}
                     <div className="collapse navbar-collapse justify-content-between" id='navbarNav'>
                         <ul className="navbar-nav nav-menu align-items-center gap-4">
                             <li className="nav-item"><Link to='/' className='nav-link'>Inicio</Link></li>
@@ -108,14 +126,11 @@ function Nav() {
                             <li className="nav-item"><Link to='/contact' className='nav-link'>Contacto</Link></li>
                         </ul>
 
-                        {/* Logo desktop */}
                         <Link to='/' className='navbar-brand order-0 d-none d-lg-flex'>
                             <h2 className="m-0 fw-bold" style={{ letterSpacing: '2px' }}>Huerto Hogar</h2>
                         </Link>
 
-                        {/* Icons */}
                         <ul className="navbar-nav d-none d-lg-flex align-items-center gap-4">
-                            
                             {!user ? (
                                 <li className="nav-item">
                                     <a href="#" data-bs-toggle='modal' data-bs-target='#signinModal' data-testid="signin-link">
@@ -125,10 +140,19 @@ function Nav() {
                             ) : (
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle text-dark" href="#" id="userDropdown" data-bs-toggle="dropdown">
-                                        <i className="bi bi-person-circle fs-5"></i> {user.name}
+                                        <i className="bi bi-person-circle fs-5"></i> {user.nombre || user.name}
                                     </a>
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" data-bs-toggle="modal" data-bs-target="#accountModal" href="#">Mi cuenta</a></li>
+                                        
+                                        {/* SOLO MOSTRAR SI ES ADMIN */}
+                                        {user.rol === 'ADMIN' && (
+                                            <li><Link className="dropdown-item text-success fw-bold" to="/admin/dashboard">
+                                                <i className="bi bi-speedometer2 me-2"></i>Dashboard Admin
+                                            </Link></li>
+                                        )}
+                                        
+                                        <li><hr className="dropdown-divider" /></li>
                                         <li><button className="dropdown-item text-danger" onClick={handleLogout}>Cerrar sesión</button></li>
                                     </ul>
                                 </li>
@@ -148,10 +172,7 @@ function Nav() {
                             </li>
                         </ul>
 
-                        {/* Iconos mobile */}
                         <ul className="d-lg-none d-flex align-items-center p-3 mt-2 gap-3">
-
-                            {/* Usuario */}
                             <li className="nav-item">
                                 {!user ? (
                                     <a href="#" data-bs-toggle='modal' data-bs-target='#signinModal'>
@@ -164,7 +185,6 @@ function Nav() {
                                 )}
                             </li>
 
-                            {/* Wishlist */}
                             <li className="nav-item position-relative">
                                 <Link to='/wishlist'>
                                     <i className="bi bi-heart fs-5 text-dark"></i>
@@ -172,7 +192,6 @@ function Nav() {
                                 </Link>
                             </li>
 
-                            {/* Carrito */}
                             <li className="nav-item position-relative">
                                 <Link to='/cart'>
                                     <i className="bi bi-cart fs-5 text-dark"></i>
@@ -284,7 +303,7 @@ function Nav() {
                             e.preventDefault();
                             const name = e.target.name.value;
                             const password = e.target.password.value;
-                            const updatedUser = { ...user, name, password };
+                            const updatedUser = { ...user, nombre: name, name, password };
                             localStorage.setItem('user', JSON.stringify(updatedUser));
                             setUser(updatedUser);
                             window.bootstrap.Modal.getInstance(document.getElementById('accountModal')).hide();
@@ -292,11 +311,15 @@ function Nav() {
                             <div className="modal-body">
                                 <div className="mb-3">
                                     <label>Nombre</label>
-                                    <input name="name" type="text" className="form-control" defaultValue={user?.name || ''} required />
+                                    <input name="name" type="text" className="form-control" defaultValue={user?.nombre || user?.name || ''} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label>Email</label>
+                                    <input type="email" className="form-control" value={user?.email || ''} disabled />
                                 </div>
                                 <div className="mb-3">
                                     <label>Contraseña</label>
-                                    <input name="password" type="password" className="form-control" defaultValue={user?.password || ''} required />
+                                    <input name="password" type="password" className="form-control" placeholder="Nueva contraseña" />
                                 </div>
                                 <button type="submit" className="btn btn-dark w-100">Actualizar</button>
                             </div>

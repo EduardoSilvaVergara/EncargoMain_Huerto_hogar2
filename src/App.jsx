@@ -14,6 +14,7 @@ import ShopFrutas from './Pages/ShopFrutas'
 import ShopVerduras from './Pages/ShopVerduras'
 import ShopLacteos from './Pages/ShopLacteos'
 import ShopOrg from './Pages/ShopOrg'
+import AdminDashboard from './Components/AdminDashboard'
 
 import ProductDetailsFrutas from './Pages/ProductDetailsFrutas'
 import ProductDetailsVerduras from './Pages/ProductDetailsVerduras'
@@ -41,7 +42,7 @@ function App() {
         <Route path='/shopVerduras' element={<ShopVerduras/>} />
         <Route path='/shopLacteos' element={<ShopLacteos/>} />
         <Route path='/shopOrg' element={<ShopOrg />} />
-
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path='/stores' element={<Stores />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/contact' element={<Contact />} />

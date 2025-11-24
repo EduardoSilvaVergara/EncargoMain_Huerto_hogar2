@@ -19,27 +19,44 @@ api.interceptors.response.use(
   }
 )
 
+// ============ USUARIOS ============
 export const getUsuarios = async () => {
   const res = await api.get("/usuario")
   const data = Array.isArray(res.data) ? res.data : (res.data?.content ?? [])
   return data
 }
+
 export const getUsuario = (id) => api.get(`/usuario/${id}`)
-export const createUsuario = (payload) => api.post("/usuario", payload)  // { nombre, email, contraseña }
+
+export const createUsuario = (payload) => api.post("/usuario", payload)
+
 export const updateUsuario = (id, payload) => api.put(`/usuario/${id}`, payload)
+
 export const deleteUsuario = (id) => api.delete(`/usuario/${id}`)
 
+// ⭐ NUEVA FUNCIÓN DE LOGIN
+export const loginUsuario = async (credentials) => {
+  const res = await api.post("/usuario/login", credentials)
+  return res.data
+}
+
+// ============ PRODUCTOS ============
 export const getProductos = async (collection = null) => {
   const url = collection ? `/producto?collection=${encodeURIComponent(collection)}` : "/producto"
   const res = await api.get(url)
   const data = Array.isArray(res.data) ? res.data : (res.data?.content ?? [])
   return data
 }
+
 export const getProducto = (id) => api.get(`/producto/${id}`)
+
 export const createProducto = (payload) => api.post("/producto", payload)
+
 export const updateProducto = (id, payload) => api.put(`/producto/${id}`, payload)
+
 export const deleteProducto = (id) => api.delete(`/producto/${id}`)
 
+// ============ OTROS ============
 export const createMensaje = (payload) => api.post("/mensaje", payload)
 
 export const createBoletin = (email) => api.post("/boletin", { email })
