@@ -34,7 +34,6 @@ export const updateUsuario = (id, payload) => api.put(`/usuario/${id}`, payload)
 
 export const deleteUsuario = (id) => api.delete(`/usuario/${id}`)
 
-// ⭐ NUEVA FUNCIÓN DE LOGIN
 export const loginUsuario = async (credentials) => {
   const res = await api.post("/usuario/login", credentials)
   return res.data
